@@ -13,6 +13,16 @@
   "scripts": {
     "start": "parcel --port=3000 index.html",
     "test": "run-p -r start test:run",
-    "test:run": "jest --env=puppeteer --watchAll"
+    "test:run": "jest --env=puppeteer",
+    "test:1": "run-p -r start test:run:1",
+    "test:run:1": "jest --env=puppeteer ./test/us-01.test.js",
+    "test:2": "run-p -r start test:run:2",
+    "test:run:2": "jest --env=puppeteer ./test/us-02.test.js",
+    "test:3": "run-p -r start test:run:3",
+    "test:run:3": "jest --env=puppeteer ./test/us-03.test.js",
+    "test:4": "run-p -r start test:run:4",
+    "test:run:4": "jest --env=puppeteer ./test/us-04.test.js",
+    "test:5": "run-p -r start test:run:5",
+    "test:run:5": "jest --env=puppeteer ./test/us-05.test.js"
   }
 }

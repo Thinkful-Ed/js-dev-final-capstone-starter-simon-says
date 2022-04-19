@@ -24,9 +24,22 @@ From your terminal, navigate to the project directory.
 
 Then open the project folder with the VSCode editor, and open the `index.html` file with VSCode Live Server. If you need a refresher on how to use VSCode, feel free to reference the *Visual Studio Code* lesson in the *Developer Workflow* module.
 
-In the root of your project, run `npm install` to install the project dependencies. You can run `npm test` to run the automated tests.
+In the root of your project, run `npm install` to install the project dependencies. 
 
-**Note:** You can use the tests as a guide during the implementation of the game but they do **not** have to all pass before you can submit your work, as long as you meet the general requirements specified in the project rubric.
+Test are split up by user story. You can run the tests for a given user story by running:
+
+`npm run test:X` where `X` is the user story number.
+
+Have a look at the following examples:
+
+- `npm test` runs all the tests across all user stories
+- `npm run test:1` runs all the tests for user story 1 
+- `npm run test:2` runs all the tests for user story 2
+- `npm run test:3` runs all the tests for user story 3
+- `npm run test:4` runs all the tests for user story 4
+- `npm run test:5` runs all the tests for user story 5
+
+**Note:** You can use the tests as a guide during the implementation of the game but they do **not** have to all pass before you can submit your work, as long as your project meets the general requirements specified in the project rubric.
 
 When you're ready, remember that you will need to submit a Github link of your project to the Thinkful team. 
 
