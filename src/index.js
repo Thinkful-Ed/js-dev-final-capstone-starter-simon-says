@@ -66,9 +66,26 @@ padContainer.addEventListener("click", padHandler);
  *
  */
 function startButtonHandler() {
+<<<<<<< Updated upstream
   // TODO: Write your code here.
 
   return { startButton, statusSpan };
+=======
+ // TODO: Write your code here.
+ pickedLevel=parseInt(document.querySelector(".text-box").value); // created a pick level variable bassed on the level selected by player
+ if(document.querySelector(".text-box").value=== ""){
+  setTimeout(()=>{setText(heading, "Please Pick a Level"),2000});
+  return { startButton, statusSpan }; // error catch if level is not selected before game is started
+ }
+ setLevel(pickedLevel); // passing the level picked by player  instead of setLevel();
+ roundCount=1
+ startButton.classList.add("hidden")
+ setText(statusSpan,"Get Ready The game will begin shortly"); // added custom message
+ statusSpan.classList.remove("hidden")
+ startSound.play(); // added starting sound form mario cart
+ setTimeout(()=>{playComputerTurn();},5500);
+ return { startButton, statusSpan };
+>>>>>>> Stashed changes
 }
 
 /**
@@ -123,6 +140,24 @@ function padHandler(event) {
  */
 function setLevel(level = 1) {
   // TODO: Write your code here.
+<<<<<<< Updated upstream
+=======
+  switch(level){ // case scario for all 10 levels.
+    case undefined: maxRoundCount=8
+      return;
+    case 1: maxRoundCount=8
+      return;
+    case 2: maxRoundCount=14
+      return;
+    case 3: maxRoundCount=20
+      return;
+    case 4: maxRoundCount=31
+      return;
+  }
+  if (level>4){
+    setText(heading, "Please enter level 1, 2, 3, or 4");
+  }
+>>>>>>> Stashed changes
 }
 
 /**
