@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap');
-
 html {
   background: url('../assets/background.png') no-repeat center center fixed;
   box-sizing: border-box;
@@ -37,13 +36,13 @@ h1 {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: yellow;
+  color: orange;
   text-align: center;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   background-color: transparent;
-  border: 1px solid yellow;
+  border: 1px solid orange;
   cursor: pointer;
 }
 
@@ -74,13 +73,13 @@ h1 {
 .pad-red:hover,
 .pad-red:focus {
   background-color: #ff451a;
-  transform: rotate(-5deg);
+  transform: rotate(5deg);
 }
 
 .pad-red:active,
 .pad-red.activated {
   background-color: #ff5c36;
-  transform: translateY(10px);
+  transform: translateY(-10px);
 }
 
 .pad-green {
@@ -97,7 +96,7 @@ h1 {
 .pad-green:active,
 .pad-green.activated {
   background-color: #a0ea00;
-  transform: translateY(10px);
+  transform: translateY(-10px);
 }
 
 .pad-yellow {
@@ -140,4 +139,81 @@ h1 {
 
 .unclickable {
   pointer-events: none;
+}
+
+.dropdown {
+  position: relative;
+  margin-top: 15px;
+  width: 50px;
+  display: inline-block;
+  height: 38px;
+  padding: 0 15px;
+  color: orange;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 1px solid orange;
+  cursor: pointer;
+}
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1000;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #333;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+.dropdown.active::before {
+  transform: rotate(-225deg);
+}
+
+.dropdown input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top:0;
+  display: inline-block;
+  padding: 12 20px;
+  border: none;
+  outline: none;
+  color: orange;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.dropdown .options {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  background:black;
+  overflow: hidden;
+  display: none;
+}
+
+.dropdown.active .options {
+  display: block;
+}
+
+.dropdown .options div {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.dropdown .options div:hover {
+  background: #ecde1c;
+  color: black;
 }

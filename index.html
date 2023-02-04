@@ -5,17 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/styles.css" />
-    <title>Simon Says</title>
+    <title>Stephen's Simon Says</title>
   </head>
   <body>
     <main>
       <!--TODO: Add the missing information in the h1 heading -->
-      <h1></h1>
+      <h1 class="js-heading">Simon Says</h1>
 
       <section class="game-controls">
-<<<<<<< Updated upstream
-        <!--TODO: Add the start button -->
-=======
         <!--added a drop down option for playeres to select all they way up to level 10-->
         <div class="dropdown js-dropdown">
           <input class="text-box js-text-box" type="text" placeholder="Level" readonly>
@@ -30,13 +27,16 @@
     </section>
       <section class="game-controls">
         <button class="start-button js-start-button"> Start</button>
->>>>>>> Stashed changes
         <span class="status hidden js-status"></span>
       </section>
 
       <section class="pad-container unclickable js-pad-container">
         <div class="pad pad-red js-pad-red" data-color="red"></div>
         <!--TODO: Add the missing pads -->
+        <div class="pad pad-green js-pad-green" data-color="green"></div>
+        <div class="pad pad-blue js-pad-blue" data-color="blue"></div>
+        <div class="pad pad-yellow js-pad-yellow" data-color="yellow"></div>
+        
       </section>
     </main>
     <script src="./src/index.js"></script>
