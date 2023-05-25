@@ -54,25 +54,6 @@ h1 {
   transform: rotate(5deg);
 }
 
-.skill-level-dropdown {
-  display: block;
-  margin-top: 10px;
-  font-size: 14px;
-  padding: 5px;
-  background-color: #000;
-  color: yellow;
-  border: 1px solid yellow;
-}
-
-.skill-level-dropdown option {
-  background-color: #000;
-  color: yellow;
-}
-
-.skill-level-dropdown:focus {
-  outline: none;
-}
-
 .status {
   font-size: 22px;
 }
@@ -159,4 +140,24 @@ h1 {
 
 .unclickable {
   pointer-events: none;
+}
+
+
+.skill-level-dropdown {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 5px;
+  background-color: #000;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.skill-level-dropdown option {
+  background-color: #000;
+  color: yellow;
+}
+
+.skill-level-dropdown:focus {
+  outline: none;
 }
