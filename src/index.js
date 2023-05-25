@@ -90,6 +90,7 @@ startButton.addEventListener("click", startButtonHandler);
  *
  */
 function startButtonHandler() {
+  console.log("Start button clicked");
   setLevel(); // Step 1
   roundCount++; // Step 2
 
