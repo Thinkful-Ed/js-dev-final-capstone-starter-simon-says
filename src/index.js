@@ -4,9 +4,10 @@
  */
 
 const startButton = document.querySelector(".js-start-button");
-const statusSpan = document.querySelector(".js-status");
-const heading = document.querySelector(".js-heading");
-const padContainer = document.querySelector(".js-pad-container");
+const statusSpan = document.querySelector(".js-status"); // Use querySelector() to get the status element
+const heading = document.querySelector(".js-heading"); // Use querySelector() to get the heading element
+const padContainer = document.querySelector(".js-pad-container"); // Use querySelector() to get the pad container element
+
 
 
 /**
@@ -36,25 +37,32 @@ const pads = [
   {
     color: "red",
     selector: document.querySelector(".js-pad-red"),
-    sound: new Audio("../assets/simon-says-sound-1.mp3"),
+    sound: new Audio(
+      "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-1.mp3?raw=true"
+    ),
   },
   {
     color: "green",
     selector: document.querySelector(".js-pad-green"),
-    sound: new Audio("../assets/simon-says-sound-2.mp3"),
+    sound: new Audio(
+      "https://example.com/path/to/green-sound.mp3"
+    ),
   },
   {
     color: "blue",
     selector: document.querySelector(".js-pad-blue"),
-    sound: new Audio("../assets/simon-says-sound-3.mp3"),
+    sound: new Audio(
+      "https://example.com/path/to/blue-sound.mp3"
+    ),
   },
   {
     color: "yellow",
     selector: document.querySelector(".js-pad-yellow"),
-    sound: new Audio("../assets/simon-says-sound-4.mp3"),
-  },
+    sound: new Audio(
+      "https://example.com/path/to/yellow-sound.mp3"
+    ),
+  }
 ];
-
 
 /**
  * EVENT LISTENERS
@@ -62,7 +70,6 @@ const pads = [
 
 padContainer.addEventListener("click", padHandler);
 startButton.addEventListener("click", startButtonHandler);
-
 
 /**
  * EVENT HANDLERS
@@ -90,6 +97,17 @@ function startButtonHandler() {
   statusSpan.classList.remove("hidden"); // Step 4
 
   playComputerTurn(); // Step 5
+}
+
+@param {number} level - The level of the game (default: 1).
+ */
+function setLevel(level = 1) {
+  if (![1, 2, 3, 4].includes(level)) {
+    console.error("Invalid level value. Acceptable values are 1, 2, 3, or 4.");
+    return;
+  }
+
+  maxRoundCount = level;
 }
 
 /**
@@ -202,12 +220,12 @@ function setText(element, text) {
  */
 
 function activatePad(color) {
-  const pad = pads.find((pad) => pad.color === color); // 1
-  pad.selector.classList.add("activated"); // 2
-  pad.sound.play(); // 3
+  const pad = pads.find((pad) => pad.color === color); // Step 1
+  pad.selector.classList.add("activated"); // Step 2
+  pad.sound.play(); // Step 3
 
   setTimeout(() => {
-    pad.selector.classList.remove("activated"); // 4
+    pad.selector.classList.remove("activated"); // Step 4
   }, 500);
 }
 
@@ -226,10 +244,12 @@ function activatePad(color) {
  */
 
 function activatePads(sequence) {
-  sequence.forEach((color, index) => {
+  let delay = 0;
+  sequence.forEach((color) => {
     setTimeout(() => {
       activatePad(color);
-    }, (index + 1) * 600);
+    }, delay);
+    delay += 1000; // Delay each activation by 1000ms (1 second)
   });
 }
 
@@ -258,15 +278,15 @@ function activatePads(sequence) {
  * sequence.
  */
 function playComputerTurn() {
-  padContainer.classList.add("unclickable"); // 1
-  setText(statusSpan, "The computer's turn..."); // 2
-  setText(heading, `Round ${roundCount} of ${maxRoundCount}`); // 3
+  padContainer.classList.add("unclickable"); // Step 1
+  setText(statusSpan, "The computer's turn..."); // Step 2
+  setText(heading, `Round ${roundCount} of ${maxRoundCount}`); // Step 3
 
-  const randomColor = getRandomColor(); // Generate a random color
-  computerSequence.push(randomColor); // 4
-  activatePads(computerSequence); // 5
+  const randomColor = getRandomItem(["red", "green", "blue", "yellow"]); // Step 4
+  computerSequence.push(randomColor); // Step 5
+  activatePads(computerSequence); // Step 6
 
-  setTimeout(() => playHumanTurn(), roundCount * 600 + 1000); // 6
+  setTimeout(() => playHumanTurn(), roundCount * 600 + 1000); // Step 7
 }
 
 /**
@@ -277,10 +297,38 @@ function playComputerTurn() {
  * 2. Display a status message showing the player how many presses are left in the round
  */
 function playHumanTurn() {
-  padContainer.classList.remove("unclickable"); // 1
-  setText(statusSpan, `${computerSequence.length - playerSequence.length} presses left`); // 2
+  padContainer.classList.remove("unclickable"); // Step 1
+  setText(statusSpan, `${computerSequence.length - playerSequence.length} presses left`); // Step 2
 }
 
+/**
+ * Called when the player presses one of the colored pads.
+ */
+function padHandler(event) {
+  const { color } = event.target.dataset;
+  if (!color) return;
+
+  playerSequence.push(color); // Add the selected color to the player's sequence
+  activatePad(color); // Activate the selected pad
+
+  // Check if the player's sequence matches the computer's sequence
+  if (!checkPlayerTurn()) {
+    endGame(); // End the game if the player made a mistake
+    return;
+  }
+
+  // If the player's sequence matches the computer's sequence and the round is completed,
+  // start the next round or end the game if the maximum round count is reached
+  if (playerSequence.length === computerSequence.length) {
+    if (roundCount === maxRoundCount) {
+      endGame(); // End the game if the maximum round count is reached
+    } else {
+      roundCount++; // Increment the round count
+      playerSequence = []; // Clear the player's sequence
+      setTimeout(playComputerTurn, 1000); // Delay before the computer's turn starts
+    }
+  }
+}
 
 /**
  * Checks the player's selection every time the player presses on a pad during
@@ -319,7 +367,6 @@ function checkPress(color) {
     checkRound(); // 6
   }
 }
-
 /**
  * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
  *
@@ -343,6 +390,7 @@ function checkRound() {
     setText(statusSpan, "Nice! Keep going!"); // Update status text
     setTimeout(playComputerTurn, 1000); // Call playComputerTurn() after 1000ms
   }
+}
 
 
 /**
@@ -354,6 +402,9 @@ function checkRound() {
  *
  * 3. Reset `roundCount` to an empty array
  */
+/**
+ * Resets the game. Called when either the player makes a mistake or wins the game.
+ */
 function resetGame(text) {
   computerSequence = []; // 1
   playerSequence = []; // 2
@@ -362,17 +413,15 @@ function resetGame(text) {
   setText(statusSpan, text); // 4
 
   setTimeout(playComputerTurn, 1000); // 5
-}
-  // Uncomment the code below:
-  function resetGame(text) {
-  // TODO: Write your code here.
 
+  // Uncomment the code below:
   alert(text);
   setText(heading, "Simon Says");
   startButton.classList.remove("hidden");
   statusSpan.classList.add("hidden");
   padContainer.classList.add("unclickable");
 }
+
 
 
 /**
