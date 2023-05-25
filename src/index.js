@@ -1,4 +1,4 @@
-
+<script>
 /**
  * DOM SELECTORS
  */
@@ -469,3 +469,6 @@ window.playHumanTurn = playHumanTurn;
 window.checkPress = checkPress;
 window.checkRound = checkRound;
 window.resetGame = resetGame;
+ </script>
+  </body>
+</html>
