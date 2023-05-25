@@ -11,24 +11,28 @@
     <main>
       <h1 class="js-heading">My Game!!</h1>
       <section class="game-controls">
-  <button class="start-button js-start-button">Start</button>
-  <span class="status hidden js-status"></span>
-  <select class="skill-level-dropdown js-skill-level-dropdown">
-    <option value="1">Skill Level 1</option>
-    <option value="2">Skill Level 2</option>
-    <option value="3">Skill Level 3</option>
-    <option value="4">Skill Level 4</option>
-  </select>
-</section>
+         <button class="start-button js-start-button">Start</button>
+         <span class="status hidden js-status"></span>
+         <select class="skill-level-dropdown js-skill-level-dropdown">
+            <option value="1">Skill Level 1</option>
+            <option value="2">Skill Level 2</option>
+            <option value="3">Skill Level 3</option>
+            <option value="4">Skill Level 4</option>
+        </select>
+    </section>
+      <div class="game-container">
+      <div class="js-pad-container">
+      <div class="js-pad-red" data-color="red"></div>
+      <div class="js-pad-green" data-color="green"></div>
+      <div class="js-pad-blue" data-color="blue"></div>
+      <div class="js-pad-yellow" data-color="yellow"></div>
+    </div>
+    <button class="js-start-button">Start Game</button>
+    <p class="js-status hidden"></p>
+  </div>
 
-    
-      <section class="pad-container unclickable js-pad-container">
-        <div class="pad pad-red js-pad-red" data-color="red"></div>
-        <div class="pad pad-green js-pad-green" data-color="green"></div>
-        <div class="pad pad-yellow js-pad-yellow" data-color="yellow"></div>
-        <div class="pad pad-blue js-pad-blue" data-color="blue"></div>
-      </section>
-    </main>
-    <script src="./src/index.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
+    
+    
