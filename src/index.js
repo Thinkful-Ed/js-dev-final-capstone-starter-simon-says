@@ -44,21 +44,21 @@ const pads = [
     color: "green",
     selector: document.querySelector(".js-pad-green"),
     sound: new Audio(
-      "https://example.com/path/to/green-sound.mp3"
+      "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-2.mp3?raw=true"
     ),
   },
   {
     color: "blue",
     selector: document.querySelector(".js-pad-blue"),
     sound: new Audio(
-      "https://example.com/path/to/blue-sound.mp3"
+    "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-3.mp3?raw=true"
     ),
   },
   {
     color: "yellow",
     selector: document.querySelector(".js-pad-yellow"),
     sound: new Audio(
-      "https://example.com/path/to/yellow-sound.mp3"
+     "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-4.mp3?raw=true"
     ),
   }
 ];
@@ -97,8 +97,8 @@ function startButtonHandler() {
   setLevel(); // Step 1
   roundCount++; // Step 2
 
-  startButton.classList.add("hidden"); // Step 3
-  statusSpan.classList.remove("hidden");
+ startButton.classList.add("hidden");
+statusSpan.classList.remove("hidden");
 
   playComputerTurn(); // Step 5
 }
@@ -284,34 +284,15 @@ function playHumanTurn() {
 /**
  * Called when the player presses one of the colored pads.
  */
+// ...
+
 function padHandler(event) {
   const { color } = event.target.dataset;
   if (!color) return;
 
   playerSequence.push(color);
   activatePad(color);
-  checkPlayerTurn();
-}
-
-function checkPlayerSelection(playerSequence) {
-  const isCorrect = playerSequence.join(',') === computerSequence.slice(0, playerSequence.length).join(',');
-
-  if (!isCorrect) {
-    endGame();
-    return false;
-  }
-
-  if (playerSequence.length === computerSequence.length) {
-    if (roundCount === maxRoundCount) {
-      endGame();
-    } else {
-      roundCount++;
-      playerSequence = [];
-      setTimeout(playComputerTurn, 1000);
-    }
-  }
-
-  return true;
+  handlePlayerSelection(playerSequence); // Call handlePlayerSelection
 }
 
 function handlePlayerSelection(playerSequence) {
@@ -320,6 +301,7 @@ function handlePlayerSelection(playerSequence) {
     return;
   }
 }
+
 
 /**
  * Checks the player's selection every time the player presses on a pad during
