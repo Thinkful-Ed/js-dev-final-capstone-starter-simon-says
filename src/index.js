@@ -1,23 +1,14 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-/**
- * DOM SELECTORS
- */
-
     const startButton = document.querySelector(".js-start-button");
     const statusSpan = document.querySelector(".js-status");
     const heading = document.querySelector(".js-heading");
     const padContainer = document.querySelector(".js-pad-container");
 
-    /**
-/**
- * VARIABLES
- */
-    let computerSequence = []; // track the computer-generated sequence of pad presses
-    let playerSequence = []; // track the player-generated sequence of pad presses
-    let maxRoundCount = 0; // the max number of rounds, varies with the chosen level
-    let roundCount = 0; // track the number of rounds that have been played so far
-
+    let computerSequence = [];
+    let playerSequence = [];
+    let maxRoundCount = 0;
+    let roundCount = 0;
 
 /**
  * The `pads` array contains an array of pad objects.
@@ -33,47 +24,38 @@
  *
  */
 
-const pads = [
-  {
-    color: "red",
-    selector: document.querySelector(".js-pad-red"),
-    sound: new Audio(
-      "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-1.mp3?raw=true"
-    ),
-  },
-  {
-    color: "green",
-    selector: document.querySelector(".js-pad-green"),
-    sound: new Audio(
-      "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-2.mp3?raw=true"
-    ),
-  },
-  {
-    color: "blue",
-    selector: document.querySelector(".js-pad-blue"),
-    sound: new Audio(
-    "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-3.mp3?raw=true"
-    ),
-  },
-  {
-    color: "yellow",
-    selector: document.querySelector(".js-pad-yellow"),
-    sound: new Audio(
-     "https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-4.mp3?raw=true"
-    ),
-  }
-];
+ const pads = [
+      {
+        color: "red",
+        selector: document.querySelector(".js-pad-red"),
+        sound: new Audio("https://example.com/simon-says-sound-1.mp3"),
+      },
+      {
+        color: "green",
+        selector: document.querySelector(".js-pad-green"),
+        sound: new Audio("https://example.com/simon-says-sound-2.mp3"),
+      },
+      {
+        color: "blue",
+        selector: document.querySelector(".js-pad-blue"),
+        sound: new Audio("https://example.com/simon-says-sound-3.mp3"),
+      },
+      {
+        color: "yellow",
+        selector: document.querySelector(".js-pad-yellow"),
+        sound: new Audio("https://example.com/simon-says-sound-4.mp3"),
+      }
+    ];
 
 /**
  * EVENT LISTENERS
  */
 
-  startButton.addEventListener("click", startButtonHandler);
-  padContainer.addEventListener("click", checkPress);
-  pads.forEach((pad) => {
-    pad.selector.addEventListener("click", padHandler);
-  });
-
+ startButton.addEventListener("click", startButtonHandler);
+ padContainer.addEventListener("click", checkPress);
+ pads.forEach((pad) => {
+   pad.selector.addEventListener("click", padHandler);
+ });
 
 /**
  * EVENT HANDLERS
@@ -94,17 +76,15 @@ const pads = [
  *
  */
 function startButtonHandler() {
-  console.log("Start button clicked");
-  setLevel(); // Step 1
-  roundCount++; // Step 2
+      console.log("Start button clicked");
+      setLevel();
+      roundCount++;
+      startButton.classList.add("hidden");
+      statusSpan.classList.remove("hidden");
+      playComputerTurn();
+    }
 
- startButton.classList.add("hidden");
-statusSpan.classList.remove("hidden");
-
-  playComputerTurn(); // Step 5
-}
-
-/**
+ /**
  * Called when one of the pads is clicked.
  *
  * 1. `const { color } = event.target.dataset;` extracts the value of `data-color`
@@ -147,17 +127,17 @@ statusSpan.classList.remove("hidden");
  * setLevel(8) //> returns "Please enter level 1, 2, 3, or 4";
  *
  */
-function setLevel(level = 1) {
-  const levelSequence = [8, 14, 20, 31];
-  const validLevels = [1, 2, 3, 4];
+ function setLevel(level = 1) {
+      const levelSequence = [8, 14, 20, 31];
+      const validLevels = [1, 2, 3, 4];
 
-  if (validLevels.includes(level)) {
-    maxRoundCount = levelSequence[level - 1];
-    return maxRoundCount;
-  } else {
-    return "Please enter level 1, 2, 3, or 4";
-  }
-}
+      if (validLevels.includes(level)) {
+        maxRoundCount = levelSequence[level - 1];
+        return maxRoundCount;
+      } else {
+        return "Please enter level 1, 2, 3, or 4";
+      }
+    }
 
 /**
  * Returns a randomly selected item from a given array.
@@ -175,17 +155,17 @@ function setLevel(level = 1) {
  * getRandomItem([1, 2, 3, 4]) //> returns 1
  */
 function getRandomItem(collection) {
-  if (collection.length === 0) return null;
-  const randomIndex = Math.floor(Math.random() * collection.length);
-  return collection[randomIndex];
-}
+      if (collection.length === 0) return null;
+      const randomIndex = Math.floor(Math.random() * collection.length);
+      return collection[randomIndex];
+    }
 
 /**
  * Sets the status text of a given HTML element with a given a message
  */
 function setText(element, text) {
-  element.textContent = text;
-}
+      element.textContent = text;
+    }
 /**
  * Activates a pad of a given color by playing its sound and light
  *
@@ -200,15 +180,14 @@ function setText(element, text) {
  */
 
 function activatePad(color) {
-  const pad = pads.find((pad) => pad.color === color);
-  pad.selector.classList.add("activated");
-  pad.sound.play();
+      const pad = pads.find((pad) => pad.color === color);
+      pad.selector.classList.add("activated");
+      pad.sound.play();
 
-  setTimeout(() => {
-    pad.selector.classList.remove("activated");
-  }, 500);
-}
-
+      setTimeout(() => {
+        pad.selector.classList.remove("activated");
+      }, 500);
+    }
 
 /**
  * Activates a sequence of colors passed as an array to the function
@@ -386,6 +365,7 @@ function resetGame(text) {
   setText(statusSpan, text);
   setTimeout(startButtonHandler, 2000);
 
+
   // Uncomment the code below:
   alert(text);
   setText(heading, "Simon Says");
@@ -393,7 +373,7 @@ function resetGame(text) {
   statusSpan.classList.add("hidden");
   padContainer.classList.add("unclickable");
 }
-
+  
 const audioHit = new Audio("https://github.com/gabrielsanchez/erddiagram/blob/main/hit.mp3?raw=true");
 const song = new Audio("https://github.com/gabrielsanchez/erddiagram/blob/main/molesong.mp3?raw=true");
 
@@ -410,7 +390,7 @@ function stopAudio(audioObject) {
   audioObject.pause();
 }
 
-function play(){
+function play() {
   playAudio(song);
 }
 
@@ -440,7 +420,6 @@ window.playHumanTurn = playHumanTurn;
 window.checkPress = checkPress;
 window.checkRound = checkRound;
 window.resetGame = resetGame;
- </script>
-  </body>
-</html>
 });
+ </script>
+
