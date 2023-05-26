@@ -4,19 +4,20 @@
  * DOM SELECTORS
  */
 
-const startButton = document.querySelector(".js-start-button");
-  const statusSpan = document.querySelector(".js-status");
-  const heading = document.querySelector(".js-heading");
-  const padContainer = document.querySelector(".js-pad-container");
+    const startButton = document.querySelector(".js-start-button");
+    const statusSpan = document.querySelector(".js-status");
+    const heading = document.querySelector(".js-heading");
+    const padContainer = document.querySelector(".js-pad-container");
 
-
+    /**
 /**
  * VARIABLES
  */
-let computerSequence = []; // track the computer-generated sequence of pad presses
-let playerSequence = []; // track the player-generated sequence of pad presses
-let maxRoundCount = 0; // the max number of rounds, varies with the chosen level
-let roundCount = 0; // track the number of rounds that have been played so far
+    let computerSequence = []; // track the computer-generated sequence of pad presses
+    let playerSequence = []; // track the player-generated sequence of pad presses
+    let maxRoundCount = 0; // the max number of rounds, varies with the chosen level
+    let roundCount = 0; // track the number of rounds that have been played so far
+
 
 /**
  * The `pads` array contains an array of pad objects.
@@ -67,7 +68,7 @@ const pads = [
  * EVENT LISTENERS
  */
 
-startButton.addEventListener("click", startButtonHandler);
+  startButton.addEventListener("click", startButtonHandler);
   padContainer.addEventListener("click", checkPress);
   pads.forEach((pad) => {
     pad.selector.addEventListener("click", padHandler);
@@ -286,22 +287,21 @@ function playHumanTurn() {
  */
 // ...
 
-function padHandler(event) {
-  const { color } = event.target.dataset;
-  if (!color) return;
+    function padHandler(event) {
+      const { color } = event.target.dataset;
+      if (!color) return;
 
-  playerSequence.push(color);
-  activatePad(color);
-  handlePlayerSelection(playerSequence); // Call handlePlayerSelection
-}
+      playerSequence.push(color);
+      activatePad(color);
+      handlePlayerSelection(playerSequence); // Call handlePlayerSelection
+    }
 
 function handlePlayerSelection(playerSequence) {
-  if (!checkPlayerSelection(playerSequence)) {
-    endGame();
-    return;
-  }
-}
-
+      if (!checkPlayerSelection(playerSequence)) {
+        endGame();
+        return;
+      }
+    }
 
 /**
  * Checks the player's selection every time the player presses on a pad during
@@ -326,22 +326,21 @@ function handlePlayerSelection(playerSequence) {
  *
  */
 function checkPress(color) {
-  playerSequence.push(color);
+      playerSequence.push(color);
 
-  const index = playerSequence.length - 1;
-  const remainingPresses = computerSequence.length - playerSequence.length;
-  setText(statusSpan, `${remainingPresses} presses left`);
+      const index = playerSequence.length - 1;
+      const remainingPresses = computerSequence.length - playerSequence.length;
+      setText(statusSpan, `${remainingPresses} presses left`);
 
-  if (computerSequence[index] !== playerSequence[index]) {
-    resetGame("Wrong move! Game over.");
-    return;
-  }
+      if (computerSequence[index] !== playerSequence[index]) {
+        resetGame("Wrong move! Game over.");
+        return;
+      }
 
-  if (remainingPresses === 0) {
-    checkRound();
-  }
-}
-
+      if (remainingPresses === 0) {
+        checkRound();
+      }
+    }
 /**
  * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
  *
