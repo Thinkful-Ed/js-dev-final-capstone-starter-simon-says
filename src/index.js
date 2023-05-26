@@ -28,22 +28,22 @@ const pads = [
   {
     color: "red",
     selector: document.querySelector(".js-pad-red"),
-    sound: new Audio("assets/simon-says-sound-1.mp3"),
+    sound: new Audio("/assets/simon-says-sound-1.mp3"),
   },
   {
     color: "green",
     selector: document.querySelector(".js-pad-green"),
-    sound: new Audio("assets/simon-says-sound-2.mp3"),
+    sound: new Audio("/assets/simon-says-sound-2.mp3"),
   },
   {
     color: "blue",
     selector: document.querySelector(".js-pad-blue"),
-    sound: new Audio("assets/simon-says-sound-3.mp3"),
+    sound: new Audio("/assets/simon-says-sound-3.mp3"),
   },
   {
     color: "yellow",
     selector: document.querySelector(".js-pad-yellow"),
-    sound: new Audio("assets/simon-says-sound-4.mp3"),
+    sound: new Audio("/assets/simon-says-sound-4.mp3"),
   }
 ];
 
@@ -246,7 +246,7 @@ function playComputerTurn() {
   computerSequence.push(randomColor);
   activatePads(computerSequence);
 
-  setTimeout(playHumanTurn, roundCount * 600 + 1000);
+  setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000);
 }
 
 /**
@@ -277,7 +277,7 @@ function playHumanTurn() {
 
 function handlePlayerSelection(playerSequence) {
       if (!checkPlayerSelection(playerSequence)) {
-        endGame();
+        resetGame("Wrong move! Game over.");
         return;
       }
     }
@@ -305,6 +305,7 @@ function handlePlayerSelection(playerSequence) {
  *
  */
  function checkPress(color) {
+   if (!color) return;
       playerSequence.push(color);
 
       const index = playerSequence.length - 1;
@@ -358,6 +359,7 @@ function checkRound() {
 /**
  * Resets the game. Called when either the player makes a mistake or wins the game.
  */
+  
 function resetGame(text) {
   computerSequence = [];
   playerSequence = [];
