@@ -6,33 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/styles.css" />
     <title>Simon Says</title>
+    <style>
+      /* Custom styles for the game */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f7f7f7;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+
+      .game-controls {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .game-controls button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .status {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .pad-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .pad {
+        width: 100%;
+        height: 100px;
+        background-color: #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      /* Custom colors for the pads */
+      .pad-red {
+        background-color: #ff4136;
+      }
+
+      .pad-green {
+        background-color: #2ecc40;
+      }
+
+      .pad-blue {
+        background-color: #0074d9;
+      }
+
+      .pad-yellow {
+        background-color: #ffdc00;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <h1 class="js-heading">My Game!!</h1>
-      <section class="game-controls">
-        <button class="start-button js-start-button">Start</button>
-        <span class="status hidden js-status"></span>
-        <select class="skill-level-dropdown js-skill-level-dropdown">
-          <option value="1">Skill Level 1</option>
-          <option value="2">Skill Level 2</option>
-          <option value="3">Skill Level 3</option>
-          <option value="4">Skill Level 4</option>
-        </select>
-      </section>
-      <div class="game-container">
-        <div class="js-pad-container">
-          <div class="js-pad-red" data-color="red"></div>
-          <div class="js-pad-green" data-color="green"></div>
-          <div class="js-pad-blue" data-color="blue"></div>
-          <div class="js-pad-yellow" data-color="yellow"></div>
-        </div>
-        <p class="js-status hidden"></p>
-      </div>
-    </main>
+      <h1>Simon Says</h1>
 
-    <script src="script.js"></script>
+      <section class="game-controls">
+        <button id="start-button">Start</button>
+        <span class="status hidden js-status"></span>
+      </section>
+
+      <section class="pad-container unclickable js-pad-container">
+        <div class="pad pad-red js-pad-red" data-color="red"></div>
+        <div class="pad pad-green js-pad-green" data-color="green"></div>
+        <div class="pad pad-blue js-pad-blue" data-color="blue"></div>
+        <div class="pad pad-yellow js-pad-yellow" data-color="yellow"></div>
+      </section>
+    </main>
+    <script src="./src/index.js"></script>
   </body>
 </html>
-
-    
