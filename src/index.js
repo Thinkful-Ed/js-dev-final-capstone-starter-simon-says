@@ -420,6 +420,6 @@ window.playHumanTurn = playHumanTurn;
 window.checkPress = checkPress;
 window.checkRound = checkRound;
 window.resetGame = resetGame;
-});
- </script>
 
+ </script>
+});
