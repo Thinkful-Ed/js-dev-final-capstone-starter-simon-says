@@ -51,11 +51,11 @@
  * EVENT LISTENERS
  */
 
- startButton.addEventListener("click", startButtonHandler);
- padContainer.addEventListener("click", checkPress);
- pads.forEach((pad) => {
-   pad.selector.addEventListener("click", padHandler);
- });
+  startButton.addEventListener("click", startButtonHandler);
+    padContainer.addEventListener("click", checkPress);
+    pads.forEach((pad) => {
+      pad.selector.addEventListener("click", padHandler);
+    });
 
 /**
  * EVENT HANDLERS
@@ -82,7 +82,7 @@ function startButtonHandler() {
       startButton.classList.add("hidden");
       statusSpan.classList.remove("hidden");
       playComputerTurn();
-    }
+   }
 
  /**
  * Called when one of the pads is clicked.
@@ -266,14 +266,14 @@ function playHumanTurn() {
  */
 // ...
 
-    function padHandler(event) {
+   function padHandler(event) {
       const { color } = event.target.dataset;
       if (!color) return;
 
       playerSequence.push(color);
       activatePad(color);
       handlePlayerSelection(playerSequence); // Call handlePlayerSelection
-    }
+   }
 
 function handlePlayerSelection(playerSequence) {
       if (!checkPlayerSelection(playerSequence)) {
@@ -304,7 +304,7 @@ function handlePlayerSelection(playerSequence) {
  * is over, so call `checkRound()` instead to check the results of the round
  *
  */
-function checkPress(color) {
+ function checkPress(color) {
       playerSequence.push(color);
 
       const index = playerSequence.length - 1;
@@ -314,7 +314,7 @@ function checkPress(color) {
       if (computerSequence[index] !== playerSequence[index]) {
         resetGame("Wrong move! Game over.");
         return;
-      }
+     }
 
       if (remainingPresses === 0) {
         checkRound();
@@ -421,5 +421,5 @@ window.checkPress = checkPress;
 window.checkRound = checkRound;
 window.resetGame = resetGame;
 
- </script>
-});
+ });
+</script>
