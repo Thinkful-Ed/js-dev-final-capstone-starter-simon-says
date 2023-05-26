@@ -1,12 +1,14 @@
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
 /**
  * DOM SELECTORS
  */
 
 const startButton = document.querySelector(".js-start-button");
-const statusSpan = document.querySelector(".js-status"); // Use querySelector() to get the status element
-const heading = document.querySelector(".js-heading"); // Use querySelector() to get the heading element
-const padContainer = document.querySelector(".js-pad-container"); // Use querySelector() to get the pad container element
+  const statusSpan = document.querySelector(".js-status");
+  const heading = document.querySelector(".js-heading");
+  const padContainer = document.querySelector(".js-pad-container");
+
 
 /**
  * VARIABLES
@@ -65,12 +67,12 @@ const pads = [
  * EVENT LISTENERS
  */
 
-startButton.addEventListener('click', startButtonHandler);
-padContainer.addEventListener('click', checkPress);
-pads.forEach((pad) => {
-  pad.selector.addEventListener('click', padHandler);
-document.addEventListener("DOMContentLoaded", function() {
-});
+startButton.addEventListener("click", startButtonHandler);
+  padContainer.addEventListener("click", checkPress);
+  pads.forEach((pad) => {
+    pad.selector.addEventListener("click", padHandler);
+  });
+
 
 /**
  * EVENT HANDLERS
@@ -291,38 +293,33 @@ function padHandler(event) {
   checkPlayerTurn();
 }
 
-function checkPlayerTurn() {
-  if (!checkPlayerSelection(playerSequence)) {
-    endGame();
-    return;
-  }
-}
-
 function checkPlayerSelection(playerSequence) {
-  const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
-  
+  const isCorrect = playerSequence.join(',') === computerSequence.slice(0, playerSequence.length).join(',');
+
   if (!isCorrect) {
     endGame();
     return false;
   }
-  
-  // If the player's sequence matches the computer's sequence and the round is completed,
-  // start the next round or end the game if the maximum round count is reached
- 
+
   if (playerSequence.length === computerSequence.length) {
     if (roundCount === maxRoundCount) {
-      endGame(); // End the game if the maximum round count is reached
+      endGame();
     } else {
-      roundCount++; // Increment the round count
-      playerSequence = []; // Clear the player's sequence
-      setTimeout(playComputerTurn, 1000); // Delay before the computer's turn starts
+      roundCount++;
+      playerSequence = [];
+      setTimeout(playComputerTurn, 1000);
     }
   }
 
   return true;
 }
 
-
+function handlePlayerSelection(playerSequence) {
+  if (!checkPlayerSelection(playerSequence)) {
+    endGame();
+    return;
+  }
+}
 
 /**
  * Checks the player's selection every time the player presses on a pad during
@@ -465,3 +462,4 @@ window.resetGame = resetGame;
  </script>
   </body>
 </html>
+});
