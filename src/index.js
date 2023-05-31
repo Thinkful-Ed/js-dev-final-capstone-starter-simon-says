@@ -295,8 +295,7 @@ function checkPlayerSelection(playerSequence) {
   const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
   
   if (!isCorrect) {
-    endGame();
-    return false;
+        return false;
   }
   
   // If the player's sequence matches the computer's sequence and the round is completed,
@@ -304,11 +303,12 @@ function checkPlayerSelection(playerSequence) {
  
   if (playerSequence.length === computerSequence.length) {
     if (roundCount === maxRoundCount) {
-      endGame(); // End the game if the maximum round count is reached
+      return false; // End the game if the maximum round count is reached
     } else {
       roundCount++; // Increment the round count
-      playerSequence = []; // Clear the player's sequence
-      setTimeout(playComputerTurn, 1000); // Delay before the computer's turn starts
+      //playerSequence = []; // Clear the player's sequence
+      //setTimeout(playComputerTurn, 1000); // Delay before the computer's turn starts
+      return true;
     }
   }
 
