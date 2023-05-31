@@ -1,4 +1,4 @@
-<script>
+
   document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.querySelector(".js-start-button");
     const statusSpan = document.querySelector(".js-status");
@@ -444,4 +444,3 @@ window.checkRound = checkRound;
 window.resetGame = resetGame;
 
  });
-</script>
