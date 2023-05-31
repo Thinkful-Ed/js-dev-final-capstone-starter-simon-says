@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
 
-    setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000);
+    setTimeout(() => playHumanTurn(computerSequence,roundCount), roundCount * 600 + 1000);
   }
 
   /**
