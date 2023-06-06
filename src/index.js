@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       color: "red",
       selector: document.querySelector(".js-pad-red"),
-      var sound: new Audio("./assets/simon-says-sound-1.mp3"),
+      sound: new Audio("./assets/simon-says-sound-1.mp3"),
     },
     {
       color: "green",
