@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   function startButtonHandler() {
     console.log("Start button clicked");
-    setLevel();
+    setLevel(1);
     roundCount++;
     startButton.classList.add("hidden");
     statusSpan.classList.remove("hidden");
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
 
-    setTimeout(() => playHumanTurn(computerSequence,roundCount), roundCount * 600 + 1000);
+    setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
   }
 
   /**
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    * 2. Display a status message showing the player how many presses are left in the round
    */
-  function playHumanTurn(computerSequence, playerSequence) {
+  function playHumanTurn(computerSequence) {
     padContainer.classList.remove("unclickable");
     setText(
       statusSpan,
@@ -265,9 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setTimeout(
-      () => playHumanTurn(computerSequence, playerSequence),
-      roundCount * 600 + 1000
-    );
+      () => playHumanTurn(computerSequence, playerSequence), playerSequence.length * 600 + 1000);
   }
 
   /**
@@ -297,15 +295,18 @@ function checkPlayerSelection(playerSequence) {
   if (!isCorrect) {
         return false;
   }
+  if (roundCount === maxRoundCount) {
+    return false; // End the game if the maximum round count is reached
+  }
   
   // If the player's sequence matches the computer's sequence and the round is completed,
   // start the next round or end the game if the maximum round count is reached
  
   if (playerSequence.length === computerSequence.length) {
     if (roundCount === maxRoundCount) {
-      return false; // End the game if the maximum round count is reached
+      return true; // End the game if the maximum round count is reached
     } else {
-      roundCount++; // Increment the round count
+      // Increment the round count
       //playerSequence = []; // Clear the player's sequence
       //setTimeout(playComputerTurn, 1000); // Delay before the computer's turn starts
       return true;
@@ -342,6 +343,10 @@ function checkPlayerSelection(playerSequence) {
     playerSequence.push(color);
     activatePad(color);
     handlePlayerSelection(playerSequence);
+
+    handlePlayerSelection(playerSequence);
+    playerSequence.push(color);
+
 
     const index = playerSequence.length - 1;
     const remainingPresses = computerSequence.length - playerSequence.length;
