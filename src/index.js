@@ -178,7 +178,12 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePad(event) {
-    const color= event.target.getAttribute("data-color")
+    let color;
+    if(typeof event ==="string"){
+      color = event;
+    }else{
+      color = event.target.getAttribut("data-color")
+    }
     const pad = pads.find((pad) => pad.color === color);
     pad.selector.classList.add("activated");
     pad.sound.play();
