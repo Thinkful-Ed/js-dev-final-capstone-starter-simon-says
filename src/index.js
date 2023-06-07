@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if(typeof event ==="string"){
       color = event;
     }else{
-      color = event.target.getAttribut("data-color")
+      color = event.target.getAttribute("data-color")
     }
     const pad = pads.find((pad) => pad.color === color);
     pad.selector.classList.add("activated");
