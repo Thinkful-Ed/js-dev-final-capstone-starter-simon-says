@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * 4. After 500ms, remove the `"activated"` class from the pad
    */
 
-  function activatePad(color) {
+  function activatePad(parameter) {
     const color= color.target.getAttribute("data-color")
     const pad = pads.find((pad) => pad.color === color);
     pad.selector.classList.add("activated");
