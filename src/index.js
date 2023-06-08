@@ -24,23 +24,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const pads = [
     {
-      color: "red",
-      selector: document.querySelector(".js-pad-red"),
+      color: 'red', selector: document.querySelector('.red'),
       sound: new Audio("https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-1.mp3?raw=true"),
     },
     {
-      color: "green",
-      selector: document.querySelector(".js-pad-green"),
+     color: 'green', selector: document.querySelector('.green'),
       sound: new Audio("./assets/simon-says-sound-2.mp3"),
     },
     {
-      color: "blue",
-      selector: document.querySelector(".js-pad-blue"),
+      color: 'blue', selector: document.querySelector('.blue'),
       sound: new Audio("./assets/simon-says-sound-3.mp3"),
     },
     {
-      color: "yellow",
-      selector: document.querySelector(".js-pad-yellow"),
+      color: 'yellow', selector: document.querySelector('.yellow'),
       sound: new Audio("./assets/simon-says-sound-4.mp3"),
     },
   ];
