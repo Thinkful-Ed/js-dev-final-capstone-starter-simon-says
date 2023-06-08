@@ -242,21 +242,23 @@ document.addEventListener("DOMContentLoaded", function () {
    * to the current round (roundCount) multiplied by 600ms which is the duration for each pad in the
    * sequence.
    */
- 
   function playComputerTurn() {
-  const colors = ["red", "green", "blue", "yellow"];
-  const randomColor = getRandomItem(pads).colors[Math.floor(Math.random() * colors.length)];
-  computerSequence.push(randomColor);
-  activatePads(computerSequence);
-}
     padContainer.classList.add("unclickable");
     setText(statusSpan, "The computer's turn...");
     setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
     
+  const colors = ["red", "green", "blue", "yellow"];
+  const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  computerSequence.push(randomColor);
+  activatePads(computerSequence);
+}
+
+
+    
 
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
-    var message = "It's the computer's turn.";
-  console.log("Message:", message);
+  }
 
   /**
    * Allows the player to play their turn.
@@ -281,8 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /**
-   * Called when the player presses one of the colored pads.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-   ]
+   * Called when the player presses one of the colored pads.
    */
   // ...
 
@@ -301,8 +302,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     playerSequence = []; // Clear the player's sequence
   }
-    playerSequence.splice(0);
-
 }
 function checkPlayerSelection(playerSequence) {
   const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
@@ -352,7 +351,7 @@ function checkPlayerSelection(playerSequence) {
    * is over, so call `checkRound()` instead to check the results of the round
    *
    */
-function checkPress(color) {
+  function checkPress(color) {
   if (!color) return;
 
   playerSequence.push(color);
