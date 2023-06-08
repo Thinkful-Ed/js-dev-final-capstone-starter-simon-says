@@ -207,17 +207,13 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePads(sequence) {
-  let i = 0;
-  const intervalId = setInterval(() => {
-    const color = sequence[i];
-    activatePad(color);
-    i++;
-
-    if (i >= sequence.length) {
-      clearInterval(intervalId);
-    }
-  }, 600);
+  sequence.forEach((color, index) => {
+    setTimeout(() => {
+      activatePad(color);
+    }, (index + 1) * 600); // Add the index + 1 to create a progressive delay
+  });
 }
+
   /**
    * Allows the computer to play its turn.
    *
@@ -250,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
   activatePads(computerSequence);
 
   setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000);
-   playHumanTurn();
 }
 
   /**
@@ -264,7 +259,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padElements.forEach((padElement) => {
     padElement.addEventListener('click', padHandler);
   });
+
+  // Remove the event listener after the player's turn
+  setTimeout(() => {
+    padElements.forEach((padElement) => {
+      padElement.removeEventListener('click', padHandler);
+    });
+  }, roundCount * 600 + 1000);
 }
+
   /**
    * Called when the player presses one of the colored pads.
    */
