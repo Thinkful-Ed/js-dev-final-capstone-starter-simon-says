@@ -360,8 +360,6 @@ function checkPlayerSelection(playerSequence) {
     const nextColor = computerSequence[playerSequence.length];
     setText(statusSpan, `Press the ${nextColor} button`);
 
-    setText(statusSpan, `${remainingPresses} presses left`);
-
     if (computerSequence[index] !== playerSequence[index]) {
       resetGame("Wrong move! Game over.");
       return;
