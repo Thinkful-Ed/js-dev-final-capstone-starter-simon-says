@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
   roundCount++;
     startButton.classList.add("hidden");
     statusSpan.classList.remove("hidden");
-    playComputerTurn();
   }
 
   /**
