@@ -217,6 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }, delay);
     delay += 600;
   });
+    console.log("Received Sequence:", sequence);
+
 }
 
   /**
@@ -252,6 +254,12 @@ document.addEventListener("DOMContentLoaded", function () {
     activatePads(computerSequence);
 
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
+    var message = "It's the computer's turn.";
+    var randomColor = getRandomColor();
+    colorSequence.push(randomColor);
+    activatePads(colorSequence);
+  console.log("Message:", message);
+  console.log("Color Sequence:", colorSequence);
   }
 
   /**
