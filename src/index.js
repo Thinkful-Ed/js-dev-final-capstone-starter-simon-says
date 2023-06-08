@@ -24,19 +24,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const pads = [
     {
-      color: 'red', selector: document.querySelector('.red'),
+      color: "red",
+      selector: document.querySelector(".js-pad-red"),
       sound: new Audio("https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-1.mp3?raw=true"),
     },
     {
-     color: 'green', selector: document.querySelector('.green'),
+      color: "green",
+      selector: document.querySelector(".js-pad-green"),
       sound: new Audio("./assets/simon-says-sound-2.mp3"),
     },
     {
-      color: 'blue', selector: document.querySelector('.blue'),
+      color: "blue",
+      selector: document.querySelector(".js-pad-blue"),
       sound: new Audio("./assets/simon-says-sound-3.mp3"),
     },
     {
-      color: 'yellow', selector: document.querySelector('.yellow'),
+      color: "yellow",
+      selector: document.querySelector(".js-pad-yellow"),
       sound: new Audio("./assets/simon-says-sound-4.mp3"),
     },
   ];
@@ -176,22 +180,20 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePad(event) {
-  let color;
-  if (typeof event === "string") {
-    color = event;
-  } else {
-    color = event.target.getAttribute("data-color");
+    let color;
+    if(typeof event ==="string"){
+      color = event;
+    }else{
+      color = event.target.getAttribute("data-color")
+    }
+    const pad = pads.find((pad) => pad.color === color);
+    pad.selector.classList.add("activated");
+    pad.sound.play();
+
+    setTimeout(() => {
+      pad.selector.classList.remove("activated");
+    }, 500);
   }
-  
-  const pad = pads.find((pad) => pad.color === color);
-  pad[selector].classList.add("activated");
-  pad.sound.play();
-
-  setTimeout(() => {
-    pad[selector].classList.remove("activated");
-  }, 500);
-}
-
 
   /**
    * Activates a sequence of colors passed as an array to the function
@@ -261,12 +263,15 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   function playHumanTurn(computerSequence, playerSequence) {
     padContainer.classList.remove("unclickable");
-    setText(statusSpan,`${computerSequence.length - playerSequence.length} presses left`
+    setText(
+      statusSpan,
+      `${computerSequence.length - playerSequence.length} presses left`
     );
+
     if (playerSequence.length === roundCount) {
       checkRound();
     }
-  const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
+
     setTimeout(
       () => playHumanTurn(computerSequence, playerSequence), playerSequence.length * 600 + 1000);
   }
