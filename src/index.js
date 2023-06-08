@@ -74,9 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    */
   function startButtonHandler() {
-    console.log("Start button clicked");
-    setLevel(1);
-    roundCount++;
+  console.log("Start button clicked");
+  setLevel(1);
+  roundCount++;
     startButton.classList.add("hidden");
     statusSpan.classList.remove("hidden");
     playComputerTurn();
@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    */
   function setLevel(level = 1) {
+  level = parseInt(level);
     const levelSequence = [8, 14, 20, 31];
     const validLevels = [1, 2, 3, 4];
 
@@ -209,14 +210,14 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePads(sequence) {
-    let delay = 0;
-    sequence.forEach((color, index) => {
-      setTimeout(() => {
-        activatePad(color);
-      }, delay);
-      delay += 1000;
-    });
-  }
+  let delay = 0;
+  sequence.forEach((color, index) => {
+    setTimeout(() => {
+      activatePad(color);
+    }, delay);
+    delay += 600;
+  });
+}
 
   /**
    * Allows the computer to play its turn.
@@ -260,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    * 2. Display a status message showing the player how many presses are left in the round
    */
-  function playHumanTurn(computerSequence) {
+  function playHumanTurn(computerSequence, playerSequence) {
     padContainer.classList.remove("unclickable");
     setText(
       statusSpan,
@@ -290,12 +291,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function handlePlayerSelection(playerSequence) {
-    if (!checkPlayerSelection(playerSequence)) {
-      resetGame("Wrong move! Game over.");
-    } else {
-      playerSequence = []; // Reset playerSequence after a correct selection
-    }
+  if (!checkPlayerSelection(playerSequence)) {
+    resetGame("Wrong move! Game over.");
+  } else {
+    playerSequence = []; // Clear the player's sequence
   }
+}
 function checkPlayerSelection(playerSequence) {
   const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
   
@@ -382,9 +383,10 @@ function checkPlayerSelection(playerSequence) {
    *
    */
   function checkRound() {
-    if (playerSequence.length === maxRoundCount) {
-      resetGame("Congratulations! You completed all rounds."); // 1
-    } else {
+  if (roundCount === maxRoundCount) {
+    resetGame("Congratulations! You completed all rounds!");
+    return;
+  } else {
       roundCount++; // 2
       playerSequence = [];
       setText(statusSpan, "Nice! Keep going!"); // Update status text
