@@ -257,7 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
     var message = "It's the computer's turn.";
   console.log("Message:", message);
-  }
 
   /**
    * Allows the player to play their turn.
