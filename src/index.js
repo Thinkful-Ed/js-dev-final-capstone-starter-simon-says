@@ -296,6 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     playerSequence = []; // Clear the player's sequence
   }
+    playerSequence.splice(0);
+
 }
 function checkPlayerSelection(playerSequence) {
   const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
@@ -345,7 +347,7 @@ function checkPlayerSelection(playerSequence) {
    * is over, so call `checkRound()` instead to check the results of the round
    *
    */
-  function checkPress(color) {
+function checkPress(color) {
   if (!color) return;
 
   playerSequence.push(color);
