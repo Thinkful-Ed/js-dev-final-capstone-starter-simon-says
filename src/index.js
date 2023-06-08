@@ -162,8 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
    * Sets the status text of a given HTML element with a given a message
    */
   function setText(element, text) {
-    element.textContent = text;
-  }
+  element.textContent = text;
+}
+
   /**
    * Activates a pad of a given color by playing its sound and light
    *
@@ -356,6 +357,9 @@ function checkPlayerSelection(playerSequence) {
 
     const index = playerSequence.length - 1;
     const remainingPresses = computerSequence.length - playerSequence.length;
+    const nextColor = computerSequence[playerSequence.length];
+    setText(statusSpan, `Press the ${nextColor} button`);
+
     setText(statusSpan, `${remainingPresses} presses left`);
 
     if (computerSequence[index] !== playerSequence[index]) {
