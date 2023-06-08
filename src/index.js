@@ -242,14 +242,17 @@ document.addEventListener("DOMContentLoaded", function () {
    * to the current round (roundCount) multiplied by 600ms which is the duration for each pad in the
    * sequence.
    */
+ 
   function playComputerTurn() {
+  const colors = ["red", "green", "blue", "yellow"];
+  const randomColor = getRandomItem(pads).colors[Math.floor(Math.random() * colors.length)];
+  computerSequence.push(randomColor);
+  activatePads(computerSequence);
+}
     padContainer.classList.add("unclickable");
     setText(statusSpan, "The computer's turn...");
     setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
-
-    const randomColor = getRandomItem(pads).color
-    computerSequence.push(randomColor);
-    activatePads(computerSequence);
+    
 
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
     var message = "It's the computer's turn.";
@@ -279,7 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /**
-   * Called when the player presses one of the colored pads.
+   * Called when the player presses one of the colored pads.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+   ]
    */
   // ...
 
