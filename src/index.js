@@ -345,30 +345,28 @@ function checkPlayerSelection(playerSequence) {
    *
    */
   function checkPress(color) {
-    if (!color) return;
+  if (!color) return;
 
-    playerSequence.push(color);
-    activatePad(color);
-    handlePlayerSelection(playerSequence);
+  playerSequence.push(color);
+  activatePad(color);
+  handlePlayerSelection(playerSequence);
 
-    handlePlayerSelection(playerSequence);
-    playerSequence.push(color);
+  const index = playerSequence.length - 1;
+  const remainingPresses = computerSequence.length - playerSequence.length;
+  const nextColor = computerSequence[playerSequence.length];
+  setText(statusSpan, `Press the ${nextColor} button`);
+  setText(statusSpan, `${remainingPresses} presses left`);
 
-
-    const index = playerSequence.length - 1;
-    const remainingPresses = computerSequence.length - playerSequence.length;
-    const nextColor = computerSequence[playerSequence.length];
-    setText(statusSpan, `Press the ${nextColor} button`);
-
-    if (computerSequence[index] !== playerSequence[index]) {
-      resetGame("Wrong move! Game over.");
-      return;
-    }
-
-    if (remainingPresses === 0) {
-      checkRound();
-    }
+  if (computerSequence[index] !== playerSequence[index]) {
+    resetGame("Wrong move! Game over.");
+    return;
   }
+
+  if (remainingPresses === 0) {
+    checkRound();
+  }
+}
+
   /**
    * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
    *
