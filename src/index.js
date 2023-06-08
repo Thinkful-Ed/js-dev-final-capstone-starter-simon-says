@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setText(statusSpan, "The computer's turn...");
     setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
 
-    const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
+    const randomColor = getRandomItem(pads).color
     computerSequence.push(randomColor);
     activatePads(computerSequence);
 
