@@ -255,7 +255,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
     var message = "It's the computer's turn.";
-    activatePads(colorSequence);
   console.log("Message:", message);
   console.log("Color Sequence:", colorSequence);
   }
