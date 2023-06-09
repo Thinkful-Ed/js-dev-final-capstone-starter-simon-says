@@ -179,20 +179,18 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePad(event) {
-    let color;
-    if(typeof event ==="string"){
-      color = event;
-    }else{
-      color = event.target.getAttribute("data-color")
-    }
-    const pad = pads.find((pad) => pad.color === color);
-    pad.selector.classList.add("activated");
-    pad.sound.play();
-
-    setTimeout(() => {
-      pad.selector.classList.remove("activated");
-    }, 500);
-  }
+     const { color } = event.target.dataset; //extracts the value of `data-color`attribute on the element that was clicked and stores it in the `color` variable
+   
+         if (!color) return; // exits the function if the `color` variable is falsy
+   
+     const pad = pads.find((pad) => pad.color === color); //retrieve the pad from the `pads` array and store it in a variable called `pad`
+   
+      pad.sound.play(); //plays sound that matches the color
+   
+       checkPress(color); //verify the player's selection
+    
+        return color; // Return the `color` variable as the output
+    
 
   /**
    * Activates a sequence of colors passed as an array to the function
