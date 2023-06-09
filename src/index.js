@@ -48,9 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
   /**
    * EVENT LISTENERS
    */
-
+  padContainer.addEventListener("click", padHandler);
   startButton.addEventListener("click", startButtonHandler);
-  padContainer.addEventListener("click", checkPress);
   pads.forEach((pad) => {
     pad.selector.addEventListener("click", padHandler);
   });
@@ -246,13 +245,13 @@ document.addEventListener("DOMContentLoaded", function () {
     padContainer.classList.add("unclickable");
     setText(statusSpan, "The computer's turn...");
     setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
-    
-  const colors = ["red", "green", "blue", "yellow"];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  computerSequence.push(randomColor);
-  activatePads(computerSequence);   
+
+    const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
+    computerSequence.push(randomColor);
+    activatePads(computerSequence);
+
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
-}
+  }
 
   /**
    * Allows the player to play their turn.
