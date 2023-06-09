@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePads(sequence) {
-  let delay = 600;
+  let delay = 0;
   sequence.forEach((color, index) => {
     setTimeout(() => {
       activatePad(color);
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
 
-    setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000);
+    setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
   }
 
   /**
@@ -263,9 +263,10 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   function playHumanTurn(computerSequence, playerSequence) {
     padContainer.classList.remove("unclickable");
-    const statusElement = document.querySelector('.js-status');
-setText(statusElement, `Your turn: ${maxRoundCount - roundCount + 1} presses left`);
-  }
+    setText(
+      statusSpan,
+      `${computerSequence.length - playerSequence.length} presses left`
+    );
 
     if (playerSequence.length === roundCount) {
       checkRound();
