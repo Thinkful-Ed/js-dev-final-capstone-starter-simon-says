@@ -265,11 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
     padContainer.classList.remove("unclickable");
     const statusElement = document.querySelector('.js-status');
 setText(statusElement, `Your turn: ${maxRoundCount - roundCount + 1} presses left`);
-
-}
-      statusSpan,
-      `${computerSequence.length - playerSequence.length} presses left`
-    );
+  }
 
     if (playerSequence.length === roundCount) {
       checkRound();
