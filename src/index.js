@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
  * DOM SELECTORS
  */
 
- const startButton = document.querySelector(".js-start-button");
  const statusSpan = document.querySelector('.js-status'); 
  const heading = document.querySelector('h1'); 
  const padContainer = document.querySelector('.js-pad-container');
