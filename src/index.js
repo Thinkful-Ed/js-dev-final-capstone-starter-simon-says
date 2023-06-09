@@ -250,14 +250,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const colors = ["red", "green", "blue", "yellow"];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   computerSequence.push(randomColor);
-  activatePads(computerSequence);
-}
-
-
-    
-
+  activatePads(computerSequence);   
     setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
-  }
+}
 
   /**
    * Allows the player to play their turn.
