@@ -248,7 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
     
   const colors = ["red", "green", "blue", "yellow"];
-  const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   computerSequence.push(randomColor);
   activatePads(computerSequence);
