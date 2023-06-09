@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePads(sequence) {
-  let delay = 0;
+  let delay = 600;
   sequence.forEach((color, index) => {
     setTimeout(() => {
       activatePad(color);
