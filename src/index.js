@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
        checkPress(color); //verify the player's selection
     
         return color; // Return the `color` variable as the output
-    
+  } 
 
   /**
    * Activates a sequence of colors passed as an array to the function
@@ -474,4 +474,4 @@ function checkPlayerSelection(playerSequence) {
   window.checkPress = checkPress;
   window.checkRound = checkRound;
   window.resetGame = resetGame;
-});
+};
