@@ -286,20 +286,32 @@ document.addEventListener("DOMContentLoaded", function () {
   // ...
 
   function padHandler(event) {
-    const { color } = event.target.dataset;
-    if (!color) return;
+  const { color } = event.target.dataset;
+  if (!color) return;
 
+  playerSequence.push(color);
+  activatePad(color);
+
+  if (!handlePlayerSelection(playerSequence)) {
+    resetGame("Wrong move! Game over.");
+    return;
+  } else {
+    playerSequence = []; // Clear the player's sequence
+  }
     playerSequence.push(color);
     activatePad(color);
     handlePlayerSelection(playerSequence); // Call handlePlayerSelection
   }
 
   function handlePlayerSelection(playerSequence) {
+  function handlePlayerSelection(playerSequence) {
   if (!checkPlayerSelection(playerSequence)) {
-    resetGame("Wrong move! Game over.");
+    return false; // Incorrect move
   } else {
-    playerSequence = []; // Clear the player's sequence
+    return true; // Correct move
   }
+}
+
 }
 function checkPlayerSelection(playerSequence) {
   const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
