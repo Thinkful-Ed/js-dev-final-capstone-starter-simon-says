@@ -14,15 +14,25 @@
   <body>
     <main>
         <h1 class="js-heading">Carla Says!!!</h1>
-            <section class="game-controls">
+       <section class="game-controls">
         <button class="js-start-button">Start</button>
         <span class="status hidden js-status"></span>
-        <select class="skill-level-dropdown js-skill-level-dropdown">
-          <option value="1">Skill Level 1</option>
-          <option value="2">Skill Level 2</option>
-          <option value="3">Skill Level 3</option>
-          <option value="4">Skill Level 4</option>
-             <select id="levelSelect" class="dropdown js-dropdown">
+        <div>
+      <section>
+        <select id="levelSelect" class="dropdown js-dropdown">
+          <option value="1" disabled selected>Select Level</option>
+          <option value="1">Level 1</option>
+          <option value="2">Level 2</option>
+          <option value="3">Level 3</option>
+          <option value="4">Level 4</option>
+        </select>
+      </section>
+
+      <section class="game-controls">
+        <button class="start-button js-start-button">start</button>
+        <span class="status hidden js-status"></span>
+      </section>
+    </div>
         </select>
       </section>
       <div class="game-container">
