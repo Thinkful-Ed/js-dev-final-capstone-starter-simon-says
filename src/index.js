@@ -211,14 +211,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function activatePads(sequence) {
   let delay = 0;
+  const delayInterval = 600; // Change this value to your desired delay interval in milliseconds
+
   sequence.forEach((color, index) => {
     setTimeout(() => {
       activatePad(color);
     }, delay);
-    delay += 600;
+    delay += delayInterval;
   });
 }
 
+  
+  
   /**
    * Allows the computer to play its turn.
    *
