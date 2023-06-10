@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   function startButtonHandler() {
   console.log("Start button clicked");
-  setLevel(1);
+  setLevel();
   roundCount++;
     startButton.classList.add("hidden");
     statusSpan.classList.remove("hidden");
