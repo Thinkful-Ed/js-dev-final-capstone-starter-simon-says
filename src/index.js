@@ -285,14 +285,14 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   // ...
 
-  function padHandler(event) {
+function padHandler(event) {
   const { color } = event.target.dataset;
   if (!color) return;
 
   playerSequence.push(color);
   activatePad(color);
 
-  if (!handlePlayerSelection(playerSequence)) {
+  if (!handlePlayerSelection([...playerSequence])) {
     resetGame("Wrong move! Game over.");
     return;
   } else {
@@ -304,8 +304,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function handlePlayerSelection(playerSequence) {
-  function handlePlayerSelection(playerSequence) {
-  if (!checkPlayerSelection(playerSequence)) {
+  const playerSequenceCopy = [...playerSequence];
+  if (!checkPlayerSelection(playerSequenceCopy)) {
     return false; // Incorrect move
   } else {
     return true; // Correct move
