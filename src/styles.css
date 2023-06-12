@@ -42,43 +42,39 @@ h1 {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  width: 400px; /* Adjust the width to your desired size */
+  height: 400px; /* Adjust the height to your desired size */
+  border-radius: 50%; /* Make the container a circle */
+  background-color: #000; /* Set the background color */
+  padding: 10px; /* Add padding to space the pads properly */
+  box-sizing: border-box; /* Include padding in the total width and height */
 }
 
 .js-pad-container div {
-  width: 100px;
-  height: 100px;
+  width: 70px; /* Adjust the width of each pad */
+  height: 70px; /* Adjust the height of each pad */
   margin: 10px;
   cursor: pointer;
+  border-radius: 50%; /* Make each pad a circle */
 }
+
   
 }
 
 .js-pad-red {
   background-color: red;
-  width: 100px; /* Adjust the width */
-  height: 100px; /* Adjust the height */
-  border-radius: 50%; /* Make the pads circular */
 }
 
 .js-pad-green {
   background-color: green;
-  width: 100px; /* Adjust the width */
-  height: 100px; /* Adjust the height */
-  border-radius: 50%; /* Make the pads circular */
 }
 
 .js-pad-blue {
   background-color: blue;
-  width: 100px; /* Adjust the width */
-  height: 100px; /* Adjust the height */
-  border-radius: 50%; /* Make the pads circular */
 }
 
 .js-pad-yellow {
   background-color: yellow;
-  width: 100px; /* Adjust the width */
-  height: 100px; /* Adjust the height */
-  border-radius: 50%; /* Make the pads circular */
 }
 
 .hidden {
