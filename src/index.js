@@ -219,9 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, delay);
     delay += delayInterval;
   });
-}
-
-  
+} 
   
   /**
    * Allows the computer to play its turn.
@@ -360,17 +358,15 @@ function checkPlayerSelection(playerSequence) {
    * is over, so call `checkRound()` instead to check the results of the round
    *
    */
-  function checkPress(color) {
+ function checkPress(color) {
   if (!color) return;
 
   playerSequence.push(color);
   activatePad(color);
-  handlePlayerSelection(playerSequence);
 
   const index = playerSequence.length - 1;
   const remainingPresses = computerSequence.length - playerSequence.length;
   const nextColor = computerSequence[playerSequence.length];
-  setText(statusSpan, `Press the ${nextColor} button`);
   setText(statusSpan, `${remainingPresses} presses left`);
 
   if (computerSequence[index] !== playerSequence[index]) {
@@ -381,6 +377,8 @@ function checkPlayerSelection(playerSequence) {
   if (remainingPresses === 0) {
     checkRound();
   }
+
+  handlePlayerSelection(playerSequence);
 }
 
   /**
