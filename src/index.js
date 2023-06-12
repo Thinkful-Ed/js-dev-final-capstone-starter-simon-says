@@ -312,7 +312,6 @@ function padHandler(event) {
   }
 }
 
-}
 function checkPlayerSelection(playerSequence) {
   const isCorrect = JSON.stringify(playerSequence) === JSON.stringify(computerSequence.slice(0, playerSequence.length));
   
