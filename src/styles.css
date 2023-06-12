@@ -50,21 +50,35 @@ h1 {
   margin: 10px;
   cursor: pointer;
 }
+  
+}
 
 .js-pad-red {
   background-color: red;
+  width: 100px; /* Adjust the width */
+  height: 100px; /* Adjust the height */
+  border-radius: 50%; /* Make the pads circular */
 }
 
 .js-pad-green {
   background-color: green;
+  width: 100px; /* Adjust the width */
+  height: 100px; /* Adjust the height */
+  border-radius: 50%; /* Make the pads circular */
 }
 
 .js-pad-blue {
   background-color: blue;
+  width: 100px; /* Adjust the width */
+  height: 100px; /* Adjust the height */
+  border-radius: 50%; /* Make the pads circular */
 }
 
 .js-pad-yellow {
   background-color: yellow;
+  width: 100px; /* Adjust the width */
+  height: 100px; /* Adjust the height */
+  border-radius: 50%; /* Make the pads circular */
 }
 
 .hidden {
