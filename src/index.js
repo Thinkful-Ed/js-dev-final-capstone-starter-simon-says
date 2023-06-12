@@ -80,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
     startButton.classList.add("hidden");
     statusSpan.classList.remove("hidden");
     playComputerTurn();
+    
+    return { startButton, statusSpan };
   }
 
   /**
@@ -99,6 +101,16 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    * 6. Return the `color` variable as the output
    */
+  function padHandler(event) {
+  const { color } = event.target.dataset;
+  if (!color) return;
+
+  const pad = pads.find((pad) => pad.color === color);
+  pad.sound.play();
+  checkPress(color);
+
+  return color;
+}
 
   /**
    * HELPER FUNCTIONS
@@ -289,10 +301,6 @@ function padHandler(event) {
 
   playerSequence.push(color);
   activatePad(color);
-
-  if (!handlePlayerSelection([...playerSequence])) {
-    resetGame("Wrong move! Game over.");
-    return;
   } else {
     playerSequence = []; // Clear the player's sequence
   }
