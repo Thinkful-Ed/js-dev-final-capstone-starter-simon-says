@@ -301,9 +301,7 @@ function padHandler(event) {
 
   playerSequence.push(color);
   activatePad(color);
-  } else {
     playerSequence = []; // Clear the player's sequence
-  }
     playerSequence.push(color);
     activatePad(color);
     handlePlayerSelection(playerSequence); // Call handlePlayerSelection
