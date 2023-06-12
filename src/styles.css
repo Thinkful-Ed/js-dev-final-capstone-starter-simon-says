@@ -15,6 +15,23 @@ body {
   font-family: 'Rubik Microbe', sans-serif;
   display: flex;
   justify-content: center;
+  height: 100vh;@import url('https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap');
+
+html {
+  background: url('../assets/background.png') no-repeat center center fixed;
+  box-sizing: border-box;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+}
+
+body {
+  color: yellow;
+  font-family: 'Rubik Microbe', sans-serif;
+  display: flex;
+  justify-content: center;
   height: 100vh;
   align-items: center;
 }
@@ -37,36 +54,18 @@ h1 {
   text-align: center;
   margin-top: 100px;
 }
+
 .js-pad-container {
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  width: 400px; /* Adjust the width to your desired size */
-  height: 400px; /* Adjust the height to your desired size */
-  border-radius: 50%; /* Make the container a circle */
-  background-color: #000; /* Set the background color */
-  padding: 10px; /* Add padding to space the pads properly */
-  box-sizing: border-box; /* Include padding in the total width and height */
 }
 
 .js-pad-container div {
-  width: 70px; /* Adjust the width of each pad */
-  height: 70px; /* Adjust the height of each pad */
+  width: 100px;
+  height: 100px;
   margin: 10px;
   cursor: pointer;
-  border-radius: 50%; /* Make each pad a circle */
-  position: relative;
-  transform: rotate(-45deg); /* Rotate each pad to form a circle */
-}
-
-.js-pad-container div:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(45deg); /* Counter-rotate to cancel out the container rotation */
 }
 
 .js-pad-red {
@@ -84,7 +83,6 @@ h1 {
 .js-pad-yellow {
   background-color: yellow;
 }
-
 
 .hidden {
   display: none;
