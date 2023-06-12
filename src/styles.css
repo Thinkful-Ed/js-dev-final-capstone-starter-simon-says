@@ -37,7 +37,6 @@ h1 {
   text-align: center;
   margin-top: 100px;
 }
-
 .js-pad-container {
   display: flex;
   justify-content: center;
@@ -56,9 +55,18 @@ h1 {
   margin: 10px;
   cursor: pointer;
   border-radius: 50%; /* Make each pad a circle */
+  position: relative;
+  transform: rotate(-45deg); /* Rotate each pad to form a circle */
 }
 
-  
+.js-pad-container div:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg); /* Counter-rotate to cancel out the container rotation */
 }
 
 .js-pad-red {
@@ -76,6 +84,7 @@ h1 {
 .js-pad-yellow {
   background-color: yellow;
 }
+
 
 .hidden {
   display: none;
