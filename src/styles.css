@@ -4,18 +4,7 @@ html {
   background: url('../assets/background.png') no-repeat center center fixed;
   box-sizing: border-box;
   -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow: hidden;
-}
-
-body {
-  color: yellow;
-  font-family: 'Rubik Microbe', sans-serif;
-  display: flex;
-  justify-content: center;
-  height: 100vh;@import url('https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap');
+  -moz-background-size: cover;@import url('https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap');
 
 html {
   background: url('../assets/background.png') no-repeat center center fixed;
@@ -66,6 +55,8 @@ h1 {
   height: 100px;
   margin: 10px;
   cursor: pointer;
+}
+  
 }
 
 .js-pad-red {
