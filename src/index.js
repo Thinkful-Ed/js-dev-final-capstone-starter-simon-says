@@ -74,9 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    */
   function startButtonHandler() {
-  console.log("Start button clicked");
-  setLevel();
-  roundCount++;
+    console.log("Start button clicked");
+    setLevel();
+    roundCount++;
     startButton.classList.add("hidden");
     statusSpan.classList.remove("hidden");
     playComputerTurn();
@@ -102,15 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
    * 6. Return the `color` variable as the output
    */
   function padHandler(event) {
-  const { color } = event.target.dataset;
-  if (!color) return;
-
-  const pad = pads.find((pad) => pad.color === color);
-  pad.sound.play();
-  checkPress(color);
-
-  return color;
-}
+    const { color } = event.target.dataset;
+    if (!color) return;
+  
+    playerSequence.push(color);
+    activatePad(color);
+    sound.play(); // Call sound.play() function
+    checkPress(color); // Call checkPress function
+  }
+  
+  
+  
 
   /**
    * HELPER FUNCTIONS
@@ -175,9 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
    * Sets the status text of a given HTML element with a given a message
    */
   function setText(element, text) {
-  element.textContent = text;
-}
-
+    element.textContent = text;
+    return element;
+  }
   /**
    * Activates a pad of a given color by playing its sound and light
    *
@@ -206,7 +208,6 @@ document.addEventListener("DOMContentLoaded", function () {
       pad.selector.classList.remove("activated");
     }, 500);
   }
-
   /**
    * Activates a sequence of colors passed as an array to the function
    *
@@ -222,16 +223,16 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePads(sequence) {
-  let delay = 0;
-  const delayInterval = 600; // Change this value to your desired delay interval in milliseconds
-
-  sequence.forEach((color, index) => {
-    setTimeout(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      const color = sequence[i];
       activatePad(color);
-    }, delay);
-    delay += delayInterval;
-  });
-} 
+      i++;
+      if (i >= sequence.length) {
+        clearInterval(interval);
+      }
+    }, 600);
+  }
   
   /**
    * Allows the computer to play its turn.
@@ -256,18 +257,31 @@ document.addEventListener("DOMContentLoaded", function () {
    * to the current round (roundCount) multiplied by 600ms which is the duration for each pad in the
    * sequence.
    */
+  
   function playComputerTurn() {
+    const padContainer = document.querySelector(".js-pad-container");
+    const statusSpan = document.querySelector(".js-status");
+    const heading = document.querySelector(".js-heading");
+  
+    if (!padContainer || !statusSpan || !heading) {
+      console.error("Required elements not found.");
+      return;
+    }
+  
     padContainer.classList.add("unclickable");
     setText(statusSpan, "The computer's turn...");
     setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
-
+  
     const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
     computerSequence.push(randomColor);
     activatePads(computerSequence);
-
-    setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
+  
+    const roundDuration = computerSequence.length * 1000 + 1000;
+    setTimeout(() => {
+      playHumanTurn(computerSequence, playerSequence, roundCount);
+    }, roundDuration);
   }
-
+  
   /**
    * Allows the player to play their turn.
    *
@@ -275,20 +289,23 @@ document.addEventListener("DOMContentLoaded", function () {
    *
    * 2. Display a status message showing the player how many presses are left in the round
    */
-  function playHumanTurn(computerSequence, playerSequence) {
-    padContainer.classList.remove("unclickable");
-    setText(
-      statusSpan,
-      `${computerSequence.length - playerSequence.length} presses left`
-    );
 
-    if (playerSequence.length === roundCount) {
-      checkRound();
-    }
+// Modify the playHumanTurn function to accept the arguments
 
-    setTimeout(
-      () => playHumanTurn(computerSequence, playerSequence), playerSequence.length * 600 + 1000);
+function playHumanTurn(computerSequence, playerSequence) {
+  padContainer.classList.remove("unclickable");
+  setText(
+    statusSpan,
+    `${computerSequence.length - playerSequence.length} presses left`
+  );
+
+  if (playerSequence.length === roundCount) {
+    checkRound();
   }
+
+  setTimeout(
+    () => playHumanTurn(computerSequence, playerSequence), playerSequence.length * 600 + 1000);
+}
 
   /**
    * Called when the player presses one of the colored pads.
@@ -301,11 +318,10 @@ function padHandler(event) {
 
   playerSequence.push(color);
   activatePad(color);
-    playerSequence = []; // Clear the player's sequence
-    playerSequence.push(color);
-    activatePad(color);
-    handlePlayerSelection(playerSequence); // Call handlePlayerSelection
-  }
+  sound.play(); // Call the sound.play() function
+  checkPress(color);
+}
+
 
   function handlePlayerSelection(playerSequence) {
   const playerSequenceCopy = [...playerSequence];
@@ -364,28 +380,30 @@ function checkPlayerSelection(playerSequence) {
    * is over, so call `checkRound()` instead to check the results of the round
    *
    */
- function checkPress(color) {
-  if (!color) return;
-
-  playerSequence.push(color);
-  activatePad(color);
-
-  const index = playerSequence.length - 1;
-  const remainingPresses = computerSequence.length - playerSequence.length;
-  const nextColor = computerSequence[playerSequence.length];
-  setText(statusSpan, `${remainingPresses} presses left`);
-
-  if (computerSequence[index] !== playerSequence[index]) {
-    resetGame("Wrong move! Game over.");
-    return;
+  function checkPress(color) {
+    const index = playerSequence.length - 1;
+    if (playerSequence[index] !== computerSequence[index]) {
+      // Player selected the wrong color
+      playErrorSound();
+      displayErrorMessage("Wrong move!");
+      // Handle the game over condition
+      handleGameOver();
+      resetGame(); // Call resetGame function
+      return;
+    }
+  
+    // Player selected the correct color
+    playSound(color);
+    if (playerSequence.length === computerSequence.length) {
+      // Player completed the round successfully
+      roundCount++;
+      displayRoundCount();
+      playerSequence = [];
+      setTimeout(() => playComputerTurn(), 1000);
+    }
+    checkRound(); // Call checkRound function
   }
-
-  if (remainingPresses === 0) {
-    checkRound();
-  }
-
-  handlePlayerSelection(playerSequence);
-}
+  
 
   /**
    * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
