@@ -6,36 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/styles.css" />
-    <title>Carla Says</title>
-   
+    <title>Simon Says</title>
   </head>
   <body>
     <main>
-        <h1 class="js-heading">Carla Says!!!</h1>
-       <section class="game-controls">
-        <button class="js-start-button">Start</button>
+      <h1 class="js-heading">Simon Says!!!</h1>
+      <section class="game-controls">
+        <button class="start-button js-start-button">Start</button>
         <span class="status hidden js-status"></span>
-        <div>
-      <section>
-        <select id="levelSelect" class="dropdown js-dropdown">
-          <option value="1" disabled selected>Select Level</option>
-          <option value="1">Level 1</option>
-          <option value="2">Level 2</option>
-          <option value="3">Level 3</option>
-          <option value="4">Level 4</option>
-        </select>
-      </section>
-    </div>
-      <div class="game-container">
-        <div class="js-pad-container">
-           <div class="pad pad-red js-pad-red" data-color="red"></div>
-           <div class="pad pad-green js-pad-green" data-color="green"></div>
+        <section class="pad-container unclickable js-pad-container">
+          <div class="pad pad-red js-pad-red" data-color="red"></div>
           <div class="pad pad-blue js-pad-blue" data-color="blue"></div>
+          <div class="pad pad-green js-pad-green" data-color="green"></div>
           <div class="pad pad-yellow js-pad-yellow" data-color="yellow"></div>
-        </div>
-         <p class="js-status hidden"></p>
-      </div>
+        </section>
+          <select id="levelSelect" class="dropdown js-dropdown">
+            <option value="1" disabled selected>Select Level</option>
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+            <option value="4">Level 4</option>
+          </select>
+      </section>
     </main>
-        <script src="./src/index.js"></script>
+    <script src="./src/index.js"></script>
   </body>
 </html>
