@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * sequence.
    */
   
-  function playComputerTurn() {
+ function playComputerTurn() {
     const padContainer = document.querySelector(".js-pad-container");
     const statusSpan = document.querySelector(".js-status");
     const heading = document.querySelector(".js-heading");
@@ -276,12 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
   
-    const roundDuration = computerSequence.length * 1000 + 1000;
-    setTimeout(() => {
-      playHumanTurn(computerSequence, playerSequence, roundCount);
-    }, roundDuration);
+    const roundDuration = (roundCount * 600 + 1000) 
+    setTimeout(() => playHumanTurn(roundCount), roundDuration)
   }
-  
   /**
    * Allows the player to play their turn.
    *
