@@ -175,8 +175,9 @@ document.addEventListener("DOMContentLoaded", function () {
    * Sets the status text of a given HTML element with a given a message
    */
   function setText(element, text) {
-  element.textContent = text;
-}
+    element.textContent = text;
+  }
+  
 
   /**
    * Activates a pad of a given color by playing its sound and light
@@ -257,16 +258,18 @@ document.addEventListener("DOMContentLoaded", function () {
    * sequence.
    */
   function playComputerTurn() {
-    padContainer.classList.add("unclickable");
-    setText(statusSpan, "The computer's turn...");
-    setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
-
-    const randomColor = getRandomItem(["red", "green", "blue", "yellow"]);
-    computerSequence.push(randomColor);
-    activatePads(computerSequence);
-
-    setTimeout(() => playHumanTurn(computerSequence,playerSequence), roundCount * 600 + 1000);
+    // Randomly select a color to add to the computer sequence
+    const computerColor = getRandomColor();
+  
+    // Add the color to the computer sequence
+    computerSequence.push(computerColor);
+  
+    // Display the updated sequence to the player
+    displaySequence(computerSequence);
+  
+    setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000);
   }
+  
 
   /**
    * Allows the player to play their turn.
