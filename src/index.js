@@ -111,9 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
     checkPress(color); // Call checkPress function
   }
   
-  
-  
-
   /**
    * HELPER FUNCTIONS
    */
@@ -258,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * sequence.
    */
   
-  function playComputerTurn() {
+  function playComputerTurn(roundCount, maxRoundCount) {
     const padContainer = document.querySelector(".js-pad-container");
     const statusSpan = document.querySelector(".js-status");
     const heading = document.querySelector(".js-heading");
@@ -276,9 +273,9 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
   
-    const roundDuration = (roundCount * 600 + 1000) 
-    setTimeout(() => playHumanTurn(roundCount), roundDuration);
+    setTimeout(() => playHumanTurn(computerSequence, playerSequence, roundCount), roundCount * 600 + 1000);
   }
+  
   /**
    * Allows the player to play their turn.
    *
@@ -316,7 +313,6 @@ function padHandler(event) {
   sound.play(); // Call the sound.play() function
   checkPress(color);
 }
-
 
   function handlePlayerSelection(playerSequence) {
   const playerSequenceCopy = [...playerSequence];
@@ -399,7 +395,6 @@ function checkPlayerSelection(playerSequence) {
     checkRound(); // Call checkRound function
   }
   
-
   /**
    * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
    *
