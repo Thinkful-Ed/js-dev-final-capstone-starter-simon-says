@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     activatePads(computerSequence);
   
     const roundDuration = (roundCount * 600 + 1000) 
-    setTimeout(() => playHumanTurn(roundCount), roundDuration)
+    setTimeout(() => playHumanTurn(roundCount), roundDuration);
   }
   /**
    * Allows the player to play their turn.
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Modify the playHumanTurn function to accept the arguments
 
-function playHumanTurn(computerSequence, playerSequence, roundCount) {
+function playHumanTurn() {
   const padContainer = document.querySelector(".js-pad-container");
   const statusSpan = document.querySelector(".js-status");
 
@@ -300,11 +300,8 @@ function playHumanTurn(computerSequence, playerSequence, roundCount) {
 
   padContainer.classList.remove("unclickable");
   setText(statusSpan, `${computerSequence.length - playerSequence.length} presses left player`);
-
-  if (playerSequence.length === roundCount) {
-    checkRound();
-  }
 }
+
   /**
    * Called when the player presses one of the colored pads.
    */
