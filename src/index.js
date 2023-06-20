@@ -273,8 +273,11 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
   
-    setTimeout(() => playHumanTurn(computerSequence, playerSequence, roundCount), roundCount * 600 + 1000);
-  }
+    const roundDuration = roundCount * 600 + 1000;
+  setTimeout(() => {
+    playHumanTurn(computerSequence, playerSequence, roundCount);
+  }, roundDuration);
+}
   
   /**
    * Allows the player to play their turn.
