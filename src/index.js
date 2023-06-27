@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     playerSequence.push(color);
     activatePad(color);
-    sound.play(); // Call sound.play() function
+    pad.sound.play(); // Call sound.play() function
     checkPress(color); // Call checkPress function
   }
   
@@ -191,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePad(event) {
-    let color;
     if(typeof event ==="string"){
       color = event;
     }else{
@@ -255,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
    * sequence.
    */
   
-  function playComputerTurn(roundCount, maxRoundCount) {
+  function playComputerTurn() {
     const padContainer = document.querySelector(".js-pad-container");
     const statusSpan = document.querySelector(".js-status");
     const heading = document.querySelector(".js-heading");
@@ -273,11 +272,12 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
   
-    const roundDuration = roundCount * 600 + 1000;
+    const computerSequenceDuration = computerSequence.length * 600;
   setTimeout(() => {
-    playHumanTurn(computerSequence, playerSequence, roundCount);
-  }, roundDuration);
+    playHumanTurn(roundCount); // Call playHumanTurn() after the computer's turn is over
+  }, computerSequenceDuration);
 }
+  
   
   /**
    * Allows the player to play their turn.
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Modify the playHumanTurn function to accept the arguments
 
-function playHumanTurn() {
+function playHumanTurn(roundCount) {
   const padContainer = document.querySelector(".js-pad-container");
   const statusSpan = document.querySelector(".js-status");
 
@@ -300,6 +300,9 @@ function playHumanTurn() {
 
   padContainer.classList.remove("unclickable");
   setText(statusSpan, `${computerSequence.length - playerSequence.length} presses left player`);
+}
+function pad(number) {
+  return number < 10 ? "0" + number : number;
 }
 
   /**
@@ -313,7 +316,9 @@ function padHandler(event) {
 
   playerSequence.push(color);
   activatePad(color);
-  sound.play(); // Call the sound.play() function
+  if(pad && pad.sound) {
+  pad.sound.play(); // Call the sound.play() function
+  }
   checkPress(color);
 }
 
@@ -352,6 +357,8 @@ function checkPlayerSelection(playerSequence) {
 
   return true;
 }
+
+
   /**
    * Checks the player's selection every time the player presses on a pad during
    * the player's turn
@@ -374,9 +381,9 @@ function checkPlayerSelection(playerSequence) {
    * is over, so call `checkRound()` instead to check the results of the round
    *
    */
-  function checkPress(color) {
+  function checkPress(playerSequence){
     const index = playerSequence.length - 1;
-    if (playerSequence[index] !== computerSequence[index]) {
+    if (color !== computerSequence[index]) {
       // Player selected the wrong color
       playErrorSound();
       displayErrorMessage("Wrong move!");
@@ -398,6 +405,16 @@ function checkPlayerSelection(playerSequence) {
     checkRound(); // Call checkRound function
   }
   
+  function playErrorSound() {
+    const errorAudio = new Audio('error sound audio');
+    errorAudio.play();
+}
+function displayErrorMessage(message) {
+  const errorMessage = document.querySelector(".js-error-message");
+  errorMessage.textContent = message;
+  errorMessage.classList.add("visible");
+}
+
   /**
    * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
    *
@@ -442,6 +459,10 @@ function checkPlayerSelection(playerSequence) {
     playerSequence = [];
     roundCount = 0;
     setText(statusSpan, text);
+  
+    // Call handleGameOver function
+    handleGameOver();
+  
 
     // Remove the click event listener from the startButton
     startButton.removeEventListener("click", startButtonHandler);
