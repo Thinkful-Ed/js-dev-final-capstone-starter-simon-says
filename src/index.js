@@ -453,7 +453,8 @@ function checkPlayerSelection(playerSequence) {
       startButton.classList.remove("hidden");
       statusSpan.classList.add("hidden");
       padContainer.classList.add("unclickable");
-
+});
+}
   /**
    * Please do not modify the code below.
    * Used for testing purposes.
