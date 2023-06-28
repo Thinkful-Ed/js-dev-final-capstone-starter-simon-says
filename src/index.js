@@ -454,35 +454,6 @@ function checkPlayerSelection(playerSequence) {
       statusSpan.classList.add("hidden");
       padContainer.classList.add("unclickable");
 
-      // Add the click event listener back to the startButton
-      startButton.addEventListener("click", startButtonHandler);
-    }, 2000);
-  }
-
-  const audioHit = new Audio(
-    "https://github.com/gabrielsanchez/erddiagram/blob/main/hit.mp3?raw=true"
-  );
-  const song = new Audio(
-    "https://github.com/gabrielsanchez/erddiagram/blob/main/molesong.mp3?raw=true"
-  );
-
-  function playAudio(audioObject) {
-    audioObject.play();
-  }
-
-  function loopAudio(audioObject) {
-    audioObject.loop = true;
-    playAudio(audioObject);
-  }
-  function stopAudio(audioObject) {
-
-    audioObject.pause();
-  }
-
-  function play() {
-    playAudio(song);
-  }
-
   /**
    * Please do not modify the code below.
    * Used for testing purposes.
