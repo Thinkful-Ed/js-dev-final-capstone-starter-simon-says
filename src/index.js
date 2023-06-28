@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       color: "red",
       selector: document.querySelector(".js-pad-red"),
-      sound: new Audio("https://github.com/kchia/simon-says-sounds/blob/main/simon-says-sound-1.mp3?raw=true"),
+      sound: new Audio(""./assets/simon-says-sound-1.mp3""),
     },
     {
       color: "green",
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     playerSequence.push(color);
     activatePad(color);
-    pad.sound.play(); // Call sound.play() function
+    sound.play(); // Call sound.play() function
     checkPress(color); // Call checkPress function
   }
   
@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
 
   function activatePad(event) {
+    let color;
     if(typeof event ==="string"){
       color = event;
     }else{
@@ -254,7 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
    * sequence.
    */
   
-  function playComputerTurn() {
+  
+  function playComputerTurn(roundCount, maxRoundCount) {
     const padContainer = document.querySelector(".js-pad-container");
     const statusSpan = document.querySelector(".js-status");
     const heading = document.querySelector(".js-heading");
@@ -272,12 +274,11 @@ document.addEventListener("DOMContentLoaded", function () {
     computerSequence.push(randomColor);
     activatePads(computerSequence);
   
-    const computerSequenceDuration = computerSequence.length * 600;
+    const roundDuration = roundCount * 600 + 1000;
   setTimeout(() => {
-    playHumanTurn(roundCount); // Call playHumanTurn() after the computer's turn is over
-  }, computerSequenceDuration);
+    playHumanTurn(computerSequence, playerSequence, roundCount);
+  }, roundDuration);
 }
-  
   
   /**
    * Allows the player to play their turn.
@@ -289,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Modify the playHumanTurn function to accept the arguments
 
-function playHumanTurn(roundCount) {
+function playHumanTurn() {
   const padContainer = document.querySelector(".js-pad-container");
   const statusSpan = document.querySelector(".js-status");
 
@@ -300,9 +301,6 @@ function playHumanTurn(roundCount) {
 
   padContainer.classList.remove("unclickable");
   setText(statusSpan, `${computerSequence.length - playerSequence.length} presses left player`);
-}
-function pad(number) {
-  return number < 10 ? "0" + number : number;
 }
 
   /**
@@ -316,9 +314,7 @@ function padHandler(event) {
 
   playerSequence.push(color);
   activatePad(color);
-  if(pad && pad.sound) {
-  pad.sound.play(); // Call the sound.play() function
-  }
+  sound.play(); // Call the sound.play() function
   checkPress(color);
 }
 
@@ -357,8 +353,6 @@ function checkPlayerSelection(playerSequence) {
 
   return true;
 }
-
-
   /**
    * Checks the player's selection every time the player presses on a pad during
    * the player's turn
@@ -381,9 +375,9 @@ function checkPlayerSelection(playerSequence) {
    * is over, so call `checkRound()` instead to check the results of the round
    *
    */
-  function checkPress(playerSequence){
+  function checkPress(color) {
     const index = playerSequence.length - 1;
-    if (color !== computerSequence[index]) {
+    if (playerSequence[index] !== computerSequence[index]) {
       // Player selected the wrong color
       playErrorSound();
       displayErrorMessage("Wrong move!");
@@ -405,16 +399,6 @@ function checkPlayerSelection(playerSequence) {
     checkRound(); // Call checkRound function
   }
   
-  function playErrorSound() {
-    const errorAudio = new Audio('error sound audio');
-    errorAudio.play();
-}
-function displayErrorMessage(message) {
-  const errorMessage = document.querySelector(".js-error-message");
-  errorMessage.textContent = message;
-  errorMessage.classList.add("visible");
-}
-
   /**
    * Checks each round to see if the player has completed all the rounds of the game * or advance to the next round if the game has not finished.
    *
@@ -459,10 +443,6 @@ function displayErrorMessage(message) {
     playerSequence = [];
     roundCount = 0;
     setText(statusSpan, text);
-  
-    // Call handleGameOver function
-    handleGameOver();
-  
 
     // Remove the click event listener from the startButton
     startButton.removeEventListener("click", startButtonHandler);
