@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
  *
  */
 function startButtonHandler() {
-  setLevel();
+  setLevel(+document.querySelector("#levelSelect").value);
   roundCount++;
 
   startButton.classList.add("hidden");
