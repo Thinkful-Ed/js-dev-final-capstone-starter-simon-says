@@ -11,8 +11,8 @@ html {
 }
 
 body {
-  color: yellow;
-  font-family: 'Rubik Microbe', sans-serif;
+  color: rgb(221, 144, 246);
+  font-family: 'Comic Sans MS', sans-serif;
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -20,7 +20,7 @@ body {
 }
 
 main {
-  background-color: #000;
+  background-color: #ffffff;
   padding: 40px;
 }
 
@@ -37,20 +37,20 @@ h1 {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: yellow;
+  color: rgb(221, 144, 246);
   text-align: center;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   background-color: transparent;
-  border: 1px solid yellow;
+  border: 1px solid rgb(221, 144, 246);
   cursor: pointer;
 }
 
 .start-button:hover {
-  color: greenyellow;
+  color: rgb(161, 47, 255);
   font-size: 18px;
-  border-color: greenyellow;
+  border-color: rgb(161, 47, 255);
   transform: rotate(5deg);
 }
 
@@ -73,30 +73,30 @@ h1 {
 
 .pad-red:hover,
 .pad-red:focus {
-  background-color: #ff451a;
+  background-color: #FF69B4;
   transform: rotate(-5deg);
 }
 
 .pad-red:active,
 .pad-red.activated {
-  background-color: #ff5c36;
+  background-color: #ff0051;
   transform: translateY(10px);
 }
 
 .pad-green {
   border-top-right-radius: 200px;
-  background-color: green;
+  background-color: rgb(0, 101, 0);
 }
 
 .pad-green:hover,
 .pad-green:focus {
-  background-color: #8cc218;
+  background-color: #b4ff12;
   transform: rotate(5deg);
 }
 
 .pad-green:active,
 .pad-green.activated {
-  background-color: #a0ea00;
+  background-color: #d3fc79;
   transform: translateY(10px);
 }
 
@@ -107,13 +107,13 @@ h1 {
 
 .pad-yellow:hover,
 .pad-yellow:focus {
-  background-color: #ffb900;
+  background-color: #fbfb86;
   transform: rotate(5deg);
 }
 
 .pad-yellow:active,
 .pad-yellow.activated {
-  background-color: #ffca3d;
+  background-color: #ffeec1;
   transform: translateY(10px);
 }
 
@@ -124,13 +124,13 @@ h1 {
 
 .pad-blue:hover,
 .pad-blue:focus {
-  background-color: #139ddd;
+  background-color: #4ac3fb;
   transform: rotate(5deg);
 }
 
 .pad-blue:active,
 .pad-blue.activated {
-  background-color: #2bbcff;
+  background-color: #a0e1ff;
   transform: translateY(10px);
 }
 
