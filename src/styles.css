@@ -33,6 +33,44 @@ h1 {
   text-align: center;
 }
 
+.game-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.js-pad-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.js-pad-container div {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.js-pad-red {
+  background-color: red;
+}
+
+.js-pad-green {
+  background-color: green;
+}
+
+.js-pad-blue {
+  background-color: blue;
+}
+
+.js-pad-yellow {
+  background-color: yellow;
+}
+
+.hidden {
+  display: none;
+}
+
 .start-button {
   display: inline-block;
   height: 38px;
@@ -140,4 +178,24 @@ h1 {
 
 .unclickable {
   pointer-events: none;
+}
+
+
+.skill-level-dropdown {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 5px;
+  background-color: #000;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.skill-level-dropdown option {
+  background-color: #000;
+  color: yellow;
+}
+
+.skill-level-dropdown:focus {
+  outline: none;
 }

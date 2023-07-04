@@ -31,6 +31,7 @@ describe("US-04: playHumanTurn()", () => {
       window.playHumanTurn();
       return document.querySelector(".js-status").textContent;
     });
+    console.log()
     expect(status).toMatch(/player/i);
   });
 });

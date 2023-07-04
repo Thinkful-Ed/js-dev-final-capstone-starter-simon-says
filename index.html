@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0" version="1" />
+    <meta http-equiv="pragma" content="no-cache" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,17 +13,23 @@
   </head>
   <body>
     <main>
-      <!--TODO: Add the missing information in the h1 heading -->
-      <h1></h1>
-
+      <h1 class="js-heading">Simon Says!!!</h1>
       <section class="game-controls">
-        <!--TODO: Add the start button -->
+        <button class="start-button js-start-button">Start</button>
         <span class="status hidden js-status"></span>
-      </section>
-
-      <section class="pad-container unclickable js-pad-container">
-        <div class="pad pad-red js-pad-red" data-color="red"></div>
-        <!--TODO: Add the missing pads -->
+        <section class="pad-container unclickable js-pad-container">
+          <div class="pad pad-red js-pad-red" data-color="red"></div>
+          <div class="pad pad-blue js-pad-blue" data-color="blue"></div>
+          <div class="pad pad-green js-pad-green" data-color="green"></div>
+          <div class="pad pad-yellow js-pad-yellow" data-color="yellow"></div>
+        </section>
+          <select id="levelSelect" class="dropdown js-dropdown">
+            <option value="1" disabled selected>Select Level</option>
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+            <option value="4">Level 4</option>
+          </select>
       </section>
     </main>
     <script src="./src/index.js"></script>
